@@ -49,3 +49,45 @@ footer {
     padding: 10px;
 }
 
+main {
+    max-width: 900px;
+    margin: auto;
+    padding: 30px;
+}
+
+.card {
+    background-color: white;
+    padding: 25px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.card h2 {
+    margin-top: 0;
+    color: #005f88;
+}
+
+.contact-info p {
+    margin: 5px 0;
+}
+
+form input, form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+form button {
+    background-color: #0077aa;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #005f88;
+}

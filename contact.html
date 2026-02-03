@@ -1,3 +1,17 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact – AquaWorld</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>AquaWorld</h1>
+    <p>Neem contact met ons op</p>
+</header>
+
 <nav>
     <ul>
         <li><a href="index.html">Home</a></li>
@@ -8,23 +22,34 @@
 </nav>
 
 <main>
-    <section>
-        <h2>Contact</h2>
+    <div class="card contact-info">
+        <h2>Contactgegevens</h2>
         <p>📍 Aquariumstraat 12, 1234 AB Waterstad</p>
         <p>📧 info@aquaworld.nl</p>
         <p>☎ 012-3456789</p>
+        <p>🕒 Ma – Za: 09:00 – 18:00</p>
+    </div>
 
+    <div class="card">
+        <h2>Contactformulier</h2>
         <form>
-            <label>Naam:</label><br>
-            <input type="text"><br><br>
+            <label>Naam</label>
+            <input type="text" required>
 
-            <label>E-mail:</label><br>
-            <input type="email"><br><br>
+            <label>E-mail</label>
+            <input type="email" required>
 
-            <label>Bericht:</label><br>
-            <textarea></textarea><br><br>
+            <label>Bericht</label>
+            <textarea rows="5"></textarea>
 
             <button type="submit">Versturen</button>
         </form>
-    </section>
+    </div>
 </main>
+
+<footer>
+    <p>© 2026 AquaWorld – Fictieve website</p>
+</footer>
+
+</body>
+</html>
