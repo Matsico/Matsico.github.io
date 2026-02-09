@@ -27,20 +27,21 @@
         <p>📍 Aquariumstraat 12, 1234 AB Waterstad</p>
         <p>📧 info@aquaworld.nl</p>
         <p>☎ 012-3456789</p>
-        <p>🕒 Ma – Za: 09:00 – 18:00</p>
+        <p>🕒 Ma t/m Za: 09:00 – 18:00</p>
     </div>
 
     <div class="card">
         <h2>Contactformulier</h2>
-        <form>
+
+        <form action="https://formspree.io/f/xkovgvvo" method="POST">
             <label>Naam</label>
-            <input type="text" required>
+            <input type="text" name="naam" required>
 
             <label>E-mail</label>
-            <input type="email" required>
+            <input type="email" name="email" required>
 
             <label>Bericht</label>
-            <textarea rows="5"></textarea>
+            <textarea name="bericht" rows="5" required></textarea>
 
             <button type="submit">Versturen</button>
         </form>
