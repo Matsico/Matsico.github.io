@@ -1,0 +1,18 @@
+backend:
+  name: github
+  repo: matsico/vinenvleugel
+  branch: main
+
+media_folder: "images"
+public_folder: "/images"
+
+collections:
+  - name: "assortiment"
+    label: "Assortiment"
+    folder: "content/assortiment"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Naam", name: "title", widget: "string" }
+      - { label: "Afbeelding", name: "image", widget: "image" }
+      - { label: "Beschrijving", name: "description", widget: "text" }
