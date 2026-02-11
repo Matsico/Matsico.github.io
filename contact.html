@@ -1,59 +1,80 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-    <meta charset="UTF-8">
-    <title>Contact – AquaWorld</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Vin & Vleugel | Contact</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header>
-    <h1>AquaWorld</h1>
-    <p>Neem contact met ons op</p>
-</header>
-
 <nav>
-    <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="assortiment.html">Assortiment</a></li>
-        <li><a href="overons.html">Over ons</a></li>
-        <li><a href="contact.html">Contact</a></li>
-    </ul>
+  <a href="index.html">Home</a>
+  <a href="assortiment.html">Assortiment</a>
+  <a href="overons.html">Over ons</a>
+  <a href="contact.html">Contact</a>
 </nav>
 
-<main>
-    <div class="card contact-info">
-        <h2>Contactgegevens</h2>
-        <p>📍 Aquariumstraat 12, 1234 AB Waterstad</p>
-        <p>📧 info@aquaworld.nl</p>
-        <p>☎ 012-3456789</p>
-        <p>🕒 Ma t/m Za: 09:00 – 18:00</p>
-    </div>
+<h1>Contact</h1>
 
-    <div class="card">
-        <h2>Contactformulier</h2>
+<section>
+  <p>
+    Heb je een vraag over ons assortiment of wil je gebruikmaken van
+    onze services? Neem dan gerust contact met ons op via het formulier
+    hieronder.
+  </p>
+</section>
 
-        <form action="https://formspree.io/f/xkovgvvo" method="POST">
-            <!-- Redirect naar bedankt-pagina -->
-            <input type="hidden" name="_next" value="bedankt.html">
+<section>
+  <h2>Onze services</h2>
+  <p>
+    Vin & Vleugel biedt naast de verkoop van aquariumproducten ook
+    verschillende diensten aan.
+  </p>
+  <ul>
+    <li>Installatie van aquariums bij klanten thuis</li>
+    <li>Onderhoud van bestaande aquariums</li>
+    <li>Persoonlijk advies over inrichting en viskeuze</li>
+  </ul>
+</section>
 
-            <label>Naam</label>
-            <input type="text" name="naam" required>
+<section>
+  <h2>Contactformulier</h2>
 
-            <label>E-mail</label>
-            <input type="email" name="email" required>
+  <form action="https://formspree.io/f/xkovgvvo" method="POST">
+    <label>
+      Naam:<br>
+      <input type="text" name="name" required>
+    </label><br><br>
 
-            <label>Bericht</label>
-            <textarea name="bericht" rows="5" required></textarea>
+    <label>
+      E-mailadres:<br>
+      <input type="email" name="email" required>
+    </label><br><br>
 
-            <button type="submit">Versturen</button>
-        </form>
-    </div>
-</main>
+    <label>
+      Onderwerp:<br>
+      <select name="subject">
+        <option value="algemene vraag">Algemene vraag</option>
+        <option value="service aanvraag">Service aanvraag</option>
+        <option value="assortiment">Vraag over assortiment</option>
+      </select>
+    </label><br><br>
 
-<footer>
-    <p>© 2026 AquaWorld – Fictieve website</p>
-</footer>
+    <label>
+      Bericht:<br>
+      <textarea name="message" rows="5" required></textarea>
+    </label><br><br>
+
+    <button type="submit">Versturen</button>
+  </form>
+</section>
+
+<section>
+  <h2>Reactietijd</h2>
+  <p>
+    Wij proberen binnen 1 tot 2 werkdagen te reageren op berichten.
+  </p>
+</section>
 
 </body>
 </html>
