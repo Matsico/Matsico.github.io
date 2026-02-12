@@ -1,134 +1,54 @@
-/* Basis instellingen */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
-}
+/* Mobiele weergave */
+@media (max-width: 768px) {
 
-body {
-  background-color: #f4f7f8;
-  color: #333;
-  line-height: 1.6;
-}
+  body {
+    font-size: 18px;
+  }
 
-/* Navigatie */
-nav {
-  background-color: #0b5d66;
-  padding: 15px;
-  display: flex;
-  justify-content: center;
-  gap: 25px;
-}
-
-nav a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-nav a:hover {
-  text-decoration: underline;
-}
-
-/* Header */
-header {
-  background: linear-gradient(to right, #0b5d66, #178a94);
-  color: white;
-  padding: 60px 20px;
-  text-align: center;
-}
-
-header h1 {
-  font-size: 3rem;
-  margin-bottom: 10px;
-}
-
-header p {
-  font-size: 1.2rem;
-}
-
-/* Algemene secties */
-section {
-  background-color: white;
-  max-width: 900px;
-  margin: 30px auto;
-  padding: 25px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-section h2 {
-  color: #0b5d66;
-  margin-bottom: 10px;
-}
-
-section p {
-  margin-bottom: 10px;
-}
-
-/* Lijsten */
-ul {
-  margin-left: 20px;
-}
-
-ul li {
-  margin-bottom: 6px;
-}
-
-/* Formulier */
-form {
-  max-width: 500px;
-  margin-top: 20px;
-}
-
-label {
-  font-weight: bold;
-}
-
-input,
-textarea {
-  width: 100%;
-  padding: 10px;
-  margin-top: 5px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
-
-textarea {
-  resize: vertical;
-}
-
-button {
-  background-color: #0b5d66;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 15px;
-  font-size: 1rem;
-}
-
-button:hover {
-  background-color: #178a94;
-}
-
-/* Titels buiten sections (zoals op andere pagina’s) */
-h1 {
-  text-align: center;
-  margin-top: 30px;
-  color: #0b5d66;
-}
-
-/* Responsive (mobiel) */
-@media (max-width: 600px) {
   nav {
     flex-direction: column;
-    align-items: center;
+    gap: 15px;
+    padding: 20px;
+  }
+
+  nav a {
+    font-size: 1.2rem;
+  }
+
+  header {
+    padding: 40px 15px;
   }
 
   header h1 {
-    font-size: 2.2rem;
+    font-size: 2.5rem;
+  }
+
+  header p {
+    font-size: 1.3rem;
+  }
+
+  section {
+    margin: 20px 15px;
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+  }
+
+  input,
+  textarea,
+  select,
+  button {
+    font-size: 1.1rem;
+    padding: 12px;
+  }
+
+  button {
+    width: 100%;
   }
 }
