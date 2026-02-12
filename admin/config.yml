@@ -2,7 +2,8 @@ backend:
   name: github
   repo: Matsico/Matsico.github.io
   branch: main
-  auth_endpoint: https://vinenvleugel-auth.matsvda.workers.dev/login
+  base_url: https://vinenvleugel-auth.matsvda.workers.dev
+  auth_endpoint: /login
 
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
