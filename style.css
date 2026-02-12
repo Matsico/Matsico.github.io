@@ -25,29 +25,35 @@ body {
 }
 
 /* ========== HERO / HEADER ========== */
-header {
-  min-height: 60vh;
-  background:
-    linear-gradient(rgba(11, 93, 102, 0.7), rgba(11, 93, 102, 0.7)),
-    url("https://images.unsplash.com/photo-1501004318641-b39e6451bec6");
+.hero {
+  height: 80vh;
+  background-image: url("/images/hardscape.jpg");
   background-size: cover;
   background-position: center;
-  color: #ffffff;
+  position: relative;
+}
 
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 80, 90, 0.55);
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  color: white;
   text-align: center;
 }
 
-header h1 {
-  font-size: 3rem;
-  margin-bottom: 10px;
+.hero h1 {
+  font-size: 4rem;
+  font-weight: 700;
 }
 
-header p {
-  font-size: 1.2rem;
+.hero p {
+  font-size: 1.3rem;
 }
+
 
 /* ========== CONTENT ========== */
 main,
