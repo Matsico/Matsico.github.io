@@ -1,57 +1,45 @@
-/* Mobiele weergave */
-@media (max-width: 768px) {
-
-  body {
-    font-size: 18px;
-  }
-
-  nav {
-    flex-direction: column;
-    gap: 15px;
-    padding: 20px;
-  }
-
-  nav a {
-    font-size: 1.2rem;
-  }
-
-  header {
-    padding: 40px 15px;
-  }
-
-  header h1 {
-    font-size: 2.5rem;
-  }
-
-  header p {
-    font-size: 1.3rem;
-  }
-
-  section {
-    margin: 20px 15px;
-    padding: 20px;
-  }
-
-  h1 {
-    font-size: 2rem;
-  }
-
-  h2 {
-    font-size: 1.6rem;
-  }
-
-  input,
-  textarea,
-  select,
-  button {
-    font-size: 1.1rem;
-    padding: 12px;
-  }
-
-  button {
-    width: 100%;
-  }
-  .nav-link.active {
-  text-decoration: underline;
-  }
+/* ========== BASIS ========== */
+:root {
+  --primary: #0f5f63;
+  --secondary: #e8f3f3;
+  --dark: #1f2933;
+  --light: #ffffff;
+  --accent: #3bb3bd;
 }
+
+body {
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  background-color: #f4f6f8;
+  color: var(--dark);
+  line-height: 1.6;
+}
+
+/* ========== NAVIGATIE ========== */
+.navbar {
+  background-color: var(--primary);
+  padding: 0.8rem 1.5rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.navbar-brand {
+  font-weight: 600;
+  color: #fff !important;
+}
+
+.nav-link {
+  color: #dceff1 !important;
+  margin-left: 10px;
+  transition: 0.2s;
+}
+
+.nav-link:hover {
+  color: #ffffff !important;
+}
+
+.nav-link.active {
+  color: #ffffff !important;
+  font-weight: 600;
+  border-bottom: 2px solid var(--accent);
+}
+
+/* ========== HEADER*
