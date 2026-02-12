@@ -51,4 +51,7 @@
   button {
     width: 100%;
   }
+  .nav-link.active {
+  text-decoration: underline;
+  }
 }
