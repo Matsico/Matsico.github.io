@@ -2,8 +2,7 @@ backend:
   name: github
   repo: Matsico/Matsico.github.io
   branch: main
-  base_url: https://api.github.com
-  auth_endpoint: https://github.com/login/oauth/authorize
+  auth_endpoint: https://VINENVLEUGEL-AUTH.matsvda.workers.dev/login
 
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
