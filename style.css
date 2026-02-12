@@ -54,6 +54,10 @@ body {
   font-size: 1.3rem;
 }
 
+.hero-small {
+  height: 45vh;
+}
+
 
 /* ========== CONTENT ========== */
 main,
