@@ -4,7 +4,7 @@ backend:
   branch: main
   base_url: https://vinenvleugel-auth.matsvda.workers.dev
   auth_endpoint: /login
-  auth_scope: repo
+  client_id: Ov23liTF2dBEIX32aieu   # jouw echte client id
 
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
