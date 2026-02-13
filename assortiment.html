@@ -13,15 +13,36 @@
   <div class="container">
     <a class="navbar-brand" href="index.html">Vin & Vleugel</a>
 
-    <div class="collapse navbar-collapse">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navMenu">
       <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-        <li class="nav-item"><a class="nav-link active" href="assortiment.html">Assortiment</a></li>
-        <li class="nav-item"><a class="nav-link" href="assortiment.html?cat=vissen">Vissen</a></li>
-        <li class="nav-item"><a class="nav-link" href="assortiment.html?cat=vistoebehoren">Vistoebehoren</a></li>
-        <li class="nav-item"><a class="nav-link" href="assortiment.html?cat=vogels">Vogels</a></li>
-        <li class="nav-item"><a class="nav-link" href="assortiment.html?cat=vogeltoebehoren">Vogeltoebehoren</a></li>
-        <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">Home</a>
+        </li>
+
+        <!-- Dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown">
+            Assortiment
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="assortiment.html">Assortiment</a></li>
+            <li><a class="dropdown-item" href="services.html">Services</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="overons.html">Over ons</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="contact.html">Contact</a>
+        </li>
+
       </ul>
     </div>
   </div>
