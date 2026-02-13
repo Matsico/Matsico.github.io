@@ -64,7 +64,7 @@ body {
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.6); /* donkerder zwart */
+  background: rgba(0, 0, 0, 0.65); /* donkerder maar transparant */
   display: flex;
   flex-direction: column;
   justify-content: center;
