@@ -3,66 +3,131 @@
 <head>
   <meta charset="UTF-8">
   <title>Contact | Vin & Vleugel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Eigen CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+<!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
   <div class="container">
     <a class="navbar-brand" href="index.html">Vin & Vleugel</a>
-
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
       <span class="navbar-toggler-icon"></span>
     </button>
-
     <div class="collapse navbar-collapse" id="navMenu">
       <ul class="navbar-nav ms-auto">
-
-        <li class="nav-item">
-          <a class="nav-link" href="index.html">Home</a>
-        </li>
-
-        <!-- Dropdown -->
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown">
-            Assortiment
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="assortiment.html">Assortiment</a></li>
-            <li><a class="dropdown-item" href="services.html">Services</a></li>
-          </ul>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="overons.html">Over ons</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="contact.html">Contact</a>
-        </li>
-
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link" href="assortiment.html">Assortiment</a>
+        <a class="nav-link" href="overons.html">Over ons</a>
+        <a class="nav-link active" href="contact.html">Contact</a>
       </ul>
     </div>
   </div>
 </nav>
 
+<!-- HERO -->
 <header class="hero hero-small">
   <div class="hero-overlay">
     <h1>Contact</h1>
-    <p>Vragen over aquaria of service? Neem contact op</p>
+    <p>Heb je een vraag over onze vissen of service?</p>
   </div>
 </header>
 
-<main class="container section">
-  <!-- hier blijft je Formspree formulier -->
+<!-- CONTENT -->
+<main class="container mt-5 pt-5">
+
+  <div class="row mt-5">
+
+    <!-- Contactformulier -->
+    <div class="col-lg-6 mb-5">
+      <h2>Stuur ons een bericht</h2>
+      <p>
+        Heb je interesse in een zoetwater aquariumvis, een product uit ons assortiment
+        of onze onderhoudsservice? Vul het formulier in en wij nemen zo snel mogelijk contact met je op.
+      </p>
+
+      <form action="https://formspree.io/f/xkovgvvo" method="POST">
+
+        <div class="mb-3">
+          <label class="form-label">Naam</label>
+          <input type="text" name="naam" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">E-mailadres</label>
+          <input type="email" name="email" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Onderwerp</label>
+          <select name="onderwerp" class="form-select">
+            <option>Algemene vraag</option>
+            <option>Beschikbaarheid vis</option>
+            <option>Aquarium installatie</option>
+            <option>Aquarium onderhoud</option>
+            <option>Advies op maat</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Bericht</label>
+          <textarea name="bericht" rows="5" class="form-control" required></textarea>
+        </div>
+
+        <!-- Redirect -->
+        <input type="hidden" name="_redirect" value="dankje.html">
+
+        <button type="submit" class="btn btn-primary">
+          Verstuur bericht
+        </button>
+
+      </form>
+    </div>
+
+    <!-- Contactgegevens -->
+    <div class="col-lg-6 mb-5">
+      <h2>Contactgegevens</h2>
+
+      <p>
+        <strong>Vin & Vleugel</strong><br>
+        Zoetwater aquariumvissen & service<br>
+        België
+      </p>
+
+      <p>
+        📧 info@vinenvleugel.nl<br>
+        📱 +32 4 00 00 00 00
+      </p>
+
+      <hr>
+
+      <h4>Onze service</h4>
+      <ul>
+        <li>Installatie van aquariums bij klanten thuis</li>
+        <li>Onderhoud van bestaande aquariums</li>
+        <li>Advies over viskeuze en inrichting</li>
+      </ul>
+
+      <p>
+        Wij werken voornamelijk op afspraak. Neem gerust contact op
+        om de mogelijkheden te bespreken.
+      </p>
+    </div>
+
+  </div>
 </main>
 
-<footer>
-  <p>© 2026 Vin & Vleugel</p>
+<!-- FOOTER -->
+<footer class="text-center py-4 mt-5">
+  <p>© 2026 Vin & Vleugel – Zoetwater aquariumvissen & service</p>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
