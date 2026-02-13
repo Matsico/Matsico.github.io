@@ -15,10 +15,8 @@ body {
    =============================== */
 
 .navbar {
-  background-color: #0a2f33; /* donker teal */
-  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+  background-color: rgba(10, 47, 51, 0.95);
 }
-
 
 .navbar-brand,
 .navbar .nav-link {
