@@ -2,22 +2,28 @@
 <html lang="nl">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vin & Vleugel | Zoetwater aquaria</title>
 
   <!-- Bootstrap -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Eigen CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<!-- NAVIGATIE -->
-<nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+<!-- ===============================
+     NAVIGATIE
+================================= -->
+
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
   <div class="container">
+
     <a class="navbar-brand d-flex align-items-center" href="index.html">
-    <img src="images/logo.png" alt="Vin & Vleugel Logo" height="40" class="me-2">
-    Vin & Vleugel
+      <img src="images/logo.png" alt="Vin & Vleugel Logo" height="40" class="me-2">
+      Vin & Vleugel
     </a>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
@@ -31,7 +37,6 @@
           <a class="nav-link active" href="index.html">Home</a>
         </li>
 
-        <!-- Dropdown -->
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
             Assortiment
@@ -55,68 +60,109 @@
   </div>
 </nav>
 
+<!-- ===============================
+     HERO MET GROOT LOGO
+================================= -->
 
-<!-- HERO -->
 <header class="hero">
   <div class="hero-overlay">
+
+    <!-- Groot logo -->
+    <img src="images/logo.png" 
+         alt="Vin & Vleugel Logo" 
+         style="max-width: 280px; margin-bottom: 25px;">
+
     <h1>Vin & Vleugel</h1>
     <p>Zoetwater aquariumvissen & aquariums</p>
+
+    <a href="assortiment.html" class="btn btn-light btn-lg mt-3">
+      Bekijk ons assortiment
+    </a>
+
   </div>
 </header>
 
-<!-- CONTENT -->
-<main class="container">
+<!-- ===============================
+     CONTENT
+================================= -->
 
+<main>
+
+  <!-- Intro -->
   <section>
     <h2>Welkom bij Vin & Vleugel</h2>
     <p>
-      Vin & Vleugel is een (fictieve) aquariumwinkel die zich richt op
-      zoetwater aquariumvissen en bijbehorende producten. Deze website is
-      opgezet als schoolopdracht, maar is bedoeld om later ook in de praktijk
-      gebruikt te worden.
+      Vin & Vleugel is een (fictieve) aquariumwinkel gespecialiseerd in 
+      zoetwater aquariumvissen en bijbehorende producten. 
+      Deze website is ontwikkeld als schoolproject, maar is ontworpen 
+      alsof het een echte professionele winkel is.
     </p>
   </section>
 
+  <!-- Wat wij verkopen -->
   <section>
     <h2>Wat wij verkopen</h2>
-    <p>
-      Wij verkopen alles wat nodig is voor het houden van een zoetwater
-      aquarium. Het assortiment kan wisselen, afhankelijk van beschikbaarheid.
-    </p>
-    <ul>
-      <li>Zoetwater aquariumvissen</li>
-      <li>Aquaria</li>
-      <li>Hout en stenen</li>
-      <li>Verlichting</li>
-      <li>Overige aquariumbenodigdheden</li>
-    </ul>
+
+    <div class="row g-4 mt-3">
+
+      <div class="col-md-4">
+        <div class="card p-3 h-100">
+          <h5>Zoetwater vissen</h5>
+          <p>Gezonde aquariumvissen met aandacht voor dierenwelzijn.</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card p-3 h-100">
+          <h5>Aquaria & techniek</h5>
+          <p>Aquariums, verlichting, filters en complete installaties.</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card p-3 h-100">
+          <h5>Decoratie & hardscape</h5>
+          <p>Hout, stenen en natuurlijke inrichting voor een mooie aquascape.</p>
+        </div>
+      </div>
+
+    </div>
   </section>
 
+  <!-- Services -->
   <section>
     <h2>Onze service</h2>
     <ul>
       <li>Installatie van aquariums bij klanten thuis</li>
       <li>Onderhoud van bestaande aquariums</li>
-      <li>Advies over inrichting en viskeuze</li>
+      <li>Persoonlijk advies over inrichting en viskeuze</li>
     </ul>
   </section>
 
+  <!-- Visie -->
   <section>
     <h2>Onze visie</h2>
     <p>
-      Bij Vin & Vleugel staat dierenwelzijn centraal. Wij vinden het belangrijk
-      dat vissen op een verantwoorde manier worden gehouden en dat klanten goed
-      geïnformeerd zijn over verzorging en onderhoud.
+      Bij Vin & Vleugel staat dierenwelzijn centraal. 
+      Wij vinden het belangrijk dat vissen verantwoord worden gehouden 
+      en dat klanten goed geïnformeerd zijn over verzorging, waterwaarden 
+      en onderhoud.
     </p>
   </section>
 
 </main>
 
-<footer class="footer-custom text-white text-center py-4 mt-5">
-  <img src="images/logo.png" alt="Vin & Vleugel Logo" height="50" class="mb-3">
+<!-- ===============================
+     FOOTER
+================================= -->
+
+<footer>
+  <img src="images/logo.png" alt="Vin & Vleugel Logo" height="60">
   <p class="mb-0">© 2026 Vin & Vleugel</p>
 </footer>
 
+<!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
