@@ -55,7 +55,7 @@ body {
 
 .hero {
   height: 80vh;
-  background-image: url("/images/hardscape.jpg");
+  background-image: url("images/hardscape.jpg");
   background-size: cover;
   background-position: center;
   position: relative;
@@ -64,7 +64,7 @@ body {
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.65); /* donkerder maar transparant */
+  background: rgba(0, 0, 0, 0.75); /* donker maar afbeelding zichtbaar */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -72,6 +72,7 @@ body {
   color: white;
   text-align: center;
 }
+
 
 .hero h1 {
   font-size: 4rem;
