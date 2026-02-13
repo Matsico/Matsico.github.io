@@ -124,7 +124,7 @@ section h2 {
    =============================== */
 
 footer {
-  background: linear-gradient(90deg, #2f8f4e, #0f5c66);
+  background-color: #134b3a; /* donker groen */
   color: #ffffff;
   text-align: center;
   padding: 30px 20px;
