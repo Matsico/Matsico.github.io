@@ -15,9 +15,10 @@ body {
    =============================== */
 
 .navbar {
-  background: linear-gradient(90deg, #0f5c66, #2f8f4e);
-  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+  background-color: #0a2f33; /* donker teal */
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
 }
+
 
 .navbar-brand,
 .navbar .nav-link {
