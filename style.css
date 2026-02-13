@@ -1,30 +1,59 @@
-/* ========== BASIS ========== */
+/* ===============================
+   BASIS
+   =============================== */
+
 body {
   font-family: "Segoe UI", Roboto, Arial, sans-serif;
   background-color: #f4f6f8;
   color: #1f2d3d;
   line-height: 1.6;
+  margin: 0;
 }
 
-/* ========== NAVBAR ========== */
+/* ===============================
+   NAVBAR
+   =============================== */
+
 .navbar {
-  background-color: #0b4f5c !important;
+  background: linear-gradient(90deg, #0f5c66, #2f8f4e);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
 }
 
 .navbar-brand,
-.navbar-nav .nav-link {
+.navbar .nav-link {
   color: #ffffff !important;
+  font-weight: 500;
+  transition: all 0.3s ease;
 }
 
-.navbar-nav .nav-link {
+.navbar-brand img {
+  transition: transform 0.3s ease;
+}
+
+.navbar-brand:hover img {
+  transform: scale(1.05);
+}
+
+.navbar .nav-link {
   margin-left: 15px;
 }
 
-.navbar-nav .nav-link.active {
-  text-decoration: underline;
+/* Hover */
+.navbar .nav-link:hover {
+  color: #a8ffcb !important;
+  border-bottom: 2px solid #a8ffcb;
 }
 
-/* ========== HERO / HEADER ========== */
+/* Active */
+.navbar .nav-link.active {
+  color: #c2ffe8 !important;
+  border-bottom: 2px solid #c2ffe8;
+}
+
+/* ===============================
+   HERO / HEADER
+   =============================== */
+
 .hero {
   height: 80vh;
   background-image: url("/images/hardscape.jpg");
@@ -36,7 +65,7 @@ body {
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 80, 90, 0.55);
+  background: rgba(15, 92, 102, 0.65);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -58,8 +87,10 @@ body {
   height: 45vh;
 }
 
+/* ===============================
+   CONTENT
+   =============================== */
 
-/* ========== CONTENT ========== */
 main,
 section {
   max-width: 1100px;
@@ -68,53 +99,57 @@ section {
 }
 
 section h2 {
-  color: #0b5d66;
+  color: #0f5c66;
   margin-bottom: 15px;
 }
 
-/* ========== FOOTER ========== */
-footer {
-  background-color: #0b5d66;
-  color: #ffffff;
-  text-align: center;
-  padding: 20px;
-  margin-top: 60px;
+/* ===============================
+   CARDS
+   =============================== */
+
+.card {
+  border: none;
+  border-radius: 12px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* ========== MOBILE ========== */
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+/* ===============================
+   FOOTER
+   =============================== */
+
+footer {
+  background: linear-gradient(90deg, #2f8f4e, #0f5c66);
+  color: #ffffff;
+  text-align: center;
+  padding: 30px 20px;
+  margin-top: 60px;
+  box-shadow: 0 -3px 10px rgba(0,0,0,0.15);
+}
+
+footer img {
+  margin-bottom: 10px;
+  transition: transform 0.3s ease;
+}
+
+footer img:hover {
+  transform: scale(1.05);
+}
+
+/* ===============================
+   MOBILE
+   =============================== */
+
 @media (max-width: 768px) {
-  header h1 {
+  .hero h1 {
     font-size: 2.2rem;
   }
 
-  header p {
+  .hero p {
     font-size: 1rem;
   }
-}
-
-/* =========================
-   NAVBAR LINKS – HOVER & ACTIVE
-   ========================= */
-
-.navbar {
-  background-color: rgba(0, 90, 100, 0.85); /* waterkleur */
-}
-
-.navbar-brand,
-.navbar .nav-link {
-  color: #ffffff;
-  font-weight: 500;
-  transition: color 0.3s ease, border-bottom 0.3s ease;
-}
-
-/* Hover effect */
-.navbar .nav-link:hover {
-  color: #7fffd4; /* aquamarine */
-  border-bottom: 2px solid #7fffd4;
-}
-
-/* Active pagina */
-.navbar .nav-link.active {
-  color: #00ffd5;
-  border-bottom: 2px solid #00ffd5;
 }
