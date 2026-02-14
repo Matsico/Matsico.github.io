@@ -103,6 +103,11 @@ section h2 {
   margin-bottom: 15px;
 }
 
+main.container {
+  margin-top: 120px;
+}
+
+
 /* ===============================
    CARDS
    =============================== */
@@ -225,3 +230,64 @@ footer img:hover {
   }
 }
 
+/* ===============================
+   ASSORTIMENT & SERVICES MOBILE FIX
+   =============================== */
+
+/* Product cards responsive maken */
+#product-container .col-md-4 {
+  display: flex;
+}
+
+/* Cards altijd volle breedte op mobiel */
+@media (max-width: 768px) {
+
+  /* Cards volledig onder elkaar */
+  #product-container .col-md-4,
+  .col-md-6 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  /* Afbeeldingen niet te groot op mobiel */
+  .card-img-top {
+    height: 180px !important;
+  }
+
+  /* Cards iets meer ruimte */
+  .card {
+    border-radius: 16px;
+  }
+
+  /* Titel iets groter voor leesbaarheid */
+  .card-title {
+    font-size: 1.2rem;
+  }
+
+  /* Buttons groter en beter klikbaar */
+  .card .btn {
+    padding: 12px;
+    font-size: 1rem;
+  }
+
+  /* FILTER KNOPPEN NETJES WRAPPEN */
+  .filter-btn {
+    font-size: 0.9rem;
+    padding: 8px 14px;
+  }
+
+  /* Filters onder elkaar als scherm heel smal is */
+  @media (max-width: 480px) {
+    .filter-btn {
+      display: block;
+      width: 100%;
+      margin: 6px 0;
+    }
+  }
+
+  /* Meer ruimte onder navbar */
+  main.container {
+    margin-top: 100px !important;
+  }
+
+}
