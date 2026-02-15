@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: Matsico/Matsico.github.io
+  repo: Matsico/matsico.github.io
   branch: main
   base_url: https://vinenvleugel-auth.matsvda.workers.dev
   auth_endpoint: auth
