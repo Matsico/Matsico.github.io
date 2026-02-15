@@ -4,6 +4,7 @@ backend:
   branch: main
   base_url: https://vinenvleugel-auth.matsvda.workers.dev
   auth_endpoint: auth
+  use_graphql: true
 
 media_folder: "images"
 public_folder: "/images"
