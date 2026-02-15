@@ -9,11 +9,11 @@
   <div id="nc-root"></div>
 
   <script>
-    window.addEventListener("DOMContentLoaded", function () {
-      const script = document.createElement("script");
-      script.src = "https://unpkg.com/decap-cms@3.10.0/dist/decap-cms.js";
-      document.body.appendChild(script);
+    window.addEventListener("message", function (event) {
+      console.log("Message received:", event.data);
     });
   </script>
+
+  <script src="https://unpkg.com/decap-cms@3.10.0/dist/decap-cms.js"></script>
 </body>
 </html>
