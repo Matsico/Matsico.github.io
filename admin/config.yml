@@ -1,28 +1,14 @@
 backend:
-  name: github
-  repo: Matsico/matsico.github.io
-  branch: main
-  base_url: https://vinenvleugel-auth.matsvda.workers.dev
-  auth_endpoint: auth
+  name: test-repo
 
 media_folder: "images"
 public_folder: "/images"
 
 collections:
-  - name: "assortiment"
-    label: "Assortiment"
-    files:
-      - label: "Producten"
-        name: "producten"
-        file: "data/assortiment.json"
-        format: "json"
-        fields:
-          - label: "Producten"
-            name: "items"
-            widget: "list"
-            fields:
-              - { label: "Titel", name: "titel", widget: "string" }
-              - { label: "Beschrijving", name: "beschrijving", widget: "text" }
-              - { label: "Prijs", name: "prijs", widget: "number" }
-              - { label: "Afbeelding", name: "afbeelding", widget: "image" }
-              - { label: "Categorie", name: "categorie", widget: "string" }
+  - name: "test"
+    label: "Test"
+    folder: "data"
+    create: true
+    fields:
+      - { label: "Titel", name: "titel", widget: "string" }
+
