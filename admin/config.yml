@@ -1,5 +1,9 @@
 backend:
-  name: test-repo
+  name: github
+  repo: Matsico/Matsico.github.io
+  branch: main
+  base_url: https://vinenvleugel-auth.matsvda.workers.dev
+  auth_endpoint: auth
 
 media_folder: "images"
 public_folder: "/images"
@@ -9,6 +13,7 @@ collections:
     label: "Test"
     folder: "data"
     create: true
+    format: "json"
+    extension: "json"
     fields:
       - { label: "Titel", name: "titel", widget: "string" }
-
