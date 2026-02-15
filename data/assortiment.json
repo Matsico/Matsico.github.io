@@ -1,9 +1,11 @@
-[
-  {
-    "titel": "Clownbotia ",
-    "beschrijving": "ongeveer 15 cm lang \ngezond en eet veel.",
-    "prijs": 15,
-    "afbeelding": "images/clownbotia.jpg",
-    "categorie": "vissen"
-  }
-]
+{
+  "items": [
+    {
+      "titel": "Clownbotia",
+      "beschrijving": "ongeveer 15 cm lang\ngezond en eet veel.",
+      "prijs": 15,
+      "afbeelding": "images/clownbotia.jpg",
+      "categorie": "vissen"
+    }
+  ]
+}
