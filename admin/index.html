@@ -9,8 +9,14 @@
 <link rel="stylesheet" href="../style.css">
 
 <style>
-body { padding-top: 100px; }
+body { padding-top: 110px; }
 .hidden { display: none; }
+.product-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 6px;
+}
 </style>
 </head>
 
@@ -27,19 +33,24 @@ body { padding-top: 100px; }
 
 <div class="container">
 
+  <!-- LOGIN -->
   <div id="loginSection">
     <h2>Admin Login</h2>
-    <input type="password" id="token" class="form-control mb-2" placeholder="GitHub Personal Access Token">
+    <input type="password" id="token" class="form-control mb-2" placeholder="GitHub Token">
     <button class="btn btn-dark" onclick="login()">Login</button>
   </div>
 
+  <!-- ADMIN -->
   <div id="adminSection" class="hidden">
 
-    <h2 class="mt-4">Nieuw Product</h2>
+    <h2 class="mt-4">Nieuw / Bewerken Product</h2>
+
+    <input type="hidden" id="editSlug">
 
     <input type="text" id="titel" class="form-control mb-2" placeholder="Titel">
-
     <textarea id="beschrijving" class="form-control mb-2" placeholder="Beschrijving"></textarea>
+
+    <input type="number" id="prijs" class="form-control mb-2" placeholder="Prijs">
 
     <select id="categorie" class="form-select mb-2">
       <option value="Vissen">Vissen</option>
@@ -50,12 +61,12 @@ body { padding-top: 100px; }
 
     <input type="file" id="afbeelding" class="form-control mb-2" accept="image/*">
 
-    <button class="btn btn-success" onclick="uploadProduct()">Opslaan</button>
+    <button class="btn btn-success" onclick="saveProduct()">Opslaan</button>
 
     <hr>
 
     <h2>Producten</h2>
-    <div id="productList"></div>
+    <div id="productList" class="row"></div>
 
     <p id="status" class="mt-3"></p>
 
@@ -74,7 +85,7 @@ const repo = "Matsico/Matsico.github.io";
 
 function login() {
   githubToken = document.getElementById("token").value;
-  if (!githubToken) return alert("Voer een token in.");
+  if (!githubToken) return alert("Voer token in.");
 
   document.getElementById("loginSection").classList.add("hidden");
   document.getElementById("adminSection").classList.remove("hidden");
@@ -86,143 +97,162 @@ function slugify(text) {
   return text.toLowerCase().replace(/\s+/g, "-").replace(/[^\w-]+/g, "");
 }
 
-async function getFileSha(path) {
+async function getFile(path) {
   const res = await fetch(`https://api.github.com/repos/${repo}/contents/${path}`, {
     headers: { Authorization: `token ${githubToken}` }
   });
 
   if (res.status === 404) return null;
-  const data = await res.json();
-  return data.sha;
+  return res.json();
 }
 
 async function loadProducts() {
-  const list = document.getElementById("productList");
-  list.innerHTML = "Laden...";
+  const container = document.getElementById("productList");
+  container.innerHTML = "Laden...";
 
   const res = await fetch(`https://api.github.com/repos/${repo}/contents/data/assortiment`, {
     headers: { Authorization: `token ${githubToken}` }
   });
 
   const files = await res.json();
-  list.innerHTML = "";
+  container.innerHTML = "";
 
-  files.forEach(file => {
-    if (file.name.endsWith(".json")) {
-      const slug = file.name.replace(".json", "");
+  for (const file of files) {
 
-      list.innerHTML += `
-        <div class="card p-3 mb-2">
-          <strong>${slug}</strong>
-          <button class="btn btn-danger btn-sm float-end" onclick="deleteProduct('${slug}')">
-            Verwijderen
-          </button>
+    if (!file.name.endsWith(".json")) continue;
+
+    const dataFile = await getFile(file.path);
+    const content = JSON.parse(atob(dataFile.content));
+
+    const slug = file.name.replace(".json", "");
+
+    container.innerHTML += `
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm p-3">
+          <img src="../${content.afbeelding}" class="product-img mb-2">
+          <h5>${content.titel}</h5>
+          <p>${content.beschrijving}</p>
+          <p><strong>€ ${Number(content.prijs).toFixed(2)}</strong></p>
+          <p class="text-muted">${content.categorie}</p>
+
+          <div class="mt-auto d-flex gap-2">
+            <button class="btn btn-warning btn-sm" onclick="editProduct('${slug}')">Edit</button>
+            <button class="btn btn-danger btn-sm" onclick="deleteProduct('${slug}')">Delete</button>
+          </div>
         </div>
-      `;
-    }
-  });
+      </div>
+    `;
+  }
 }
 
-async function uploadProduct() {
+async function saveProduct() {
+
   const titel = document.getElementById("titel").value;
   const beschrijving = document.getElementById("beschrijving").value;
+  const prijs = document.getElementById("prijs").value;
   const categorie = document.getElementById("categorie").value;
   const fileInput = document.getElementById("afbeelding");
+  let slug = document.getElementById("editSlug").value;
 
-  if (!titel || !beschrijving || !fileInput.files[0]) {
-    return alert("Vul alles in.");
-  }
+  if (!slug) slug = slugify(titel);
 
-  const slug = slugify(titel);
-  const imageFile = fileInput.files[0];
+  let afbeeldingPath = `images/${slug}.jpg`;
 
-  const reader = new FileReader();
-  reader.onload = async function () {
+  if (fileInput.files[0]) {
+    const reader = new FileReader();
+    reader.onload = async function () {
 
-    const base64Image = reader.result.split(",")[1];
+      const base64Image = reader.result.split(",")[1];
 
-    await fetch(`https://api.github.com/repos/${repo}/contents/images/${slug}.jpg`, {
-      method: "PUT",
-      headers: {
-        Authorization: `token ${githubToken}`,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        message: `Afbeelding toegevoegd: ${titel}`,
-        content: base64Image
-      })
-    });
+      await fetch(`https://api.github.com/repos/${repo}/contents/${afbeeldingPath}`, {
+        method: "PUT",
+        headers: {
+          Authorization: `token ${githubToken}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          message: `Afbeelding opgeslagen: ${titel}`,
+          content: base64Image
+        })
+      });
 
-    const productData = {
-      titel,
-      beschrijving,
-      categorie,
-      afbeelding: `images/${slug}.jpg`
+      saveJson(slug, titel, beschrijving, prijs, categorie, afbeeldingPath);
     };
 
-    const jsonContent = btoa(unescape(encodeURIComponent(JSON.stringify(productData, null, 2))));
+    reader.readAsDataURL(fileInput.files[0]);
 
-    await fetch(`https://api.github.com/repos/${repo}/contents/data/assortiment/${slug}.json`, {
-      method: "PUT",
-      headers: {
-        Authorization: `token ${githubToken}`,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        message: `Product toegevoegd: ${titel}`,
-        content: jsonContent
-      })
-    });
+  } else {
+    saveJson(slug, titel, beschrijving, prijs, categorie, afbeeldingPath);
+  }
+}
 
-    document.getElementById("status").innerHTML = "Product toegevoegd!";
-    loadProducts();
+async function saveJson(slug, titel, beschrijving, prijs, categorie, afbeeldingPath) {
+
+  const path = `data/assortiment/${slug}.json`;
+  const existing = await getFile(path);
+
+  const productData = {
+    titel,
+    beschrijving,
+    prijs,
+    categorie,
+    afbeelding: afbeeldingPath
   };
 
-  reader.readAsDataURL(imageFile);
+  const content = btoa(unescape(encodeURIComponent(JSON.stringify(productData, null, 2))));
+
+  await fetch(`https://api.github.com/repos/${repo}/contents/${path}`, {
+    method: "PUT",
+    headers: {
+      Authorization: `token ${githubToken}`,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      message: `Product opgeslagen: ${titel}`,
+      content: content,
+      sha: existing ? existing.sha : undefined
+    })
+  });
+
+  document.getElementById("editSlug").value = "";
+  loadProducts();
+}
+
+async function editProduct(slug) {
+  const file = await getFile(`data/assortiment/${slug}.json`);
+  const data = JSON.parse(atob(file.content));
+
+  document.getElementById("editSlug").value = slug;
+  document.getElementById("titel").value = data.titel;
+  document.getElementById("beschrijving").value = data.beschrijving;
+  document.getElementById("prijs").value = data.prijs;
+  document.getElementById("categorie").value = data.categorie;
 }
 
 async function deleteProduct(slug) {
 
-  if (!confirm("Weet je zeker dat je dit product wil verwijderen?")) return;
+  if (!confirm("Zeker verwijderen?")) return;
 
-  const jsonPath = `data/assortiment/${slug}.json`;
-  const imagePath = `images/${slug}.jpg`;
+  const file = await getFile(`data/assortiment/${slug}.json`);
 
-  const jsonSha = await getFileSha(jsonPath);
-  if (jsonSha) {
-    await fetch(`https://api.github.com/repos/${repo}/contents/${jsonPath}`, {
-      method: "DELETE",
-      headers: {
-        Authorization: `token ${githubToken}`,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        message: `Product verwijderd: ${slug}`,
-        sha: jsonSha
-      })
-    });
-  }
+  await fetch(`https://api.github.com/repos/${repo}/contents/data/assortiment/${slug}.json`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `token ${githubToken}`,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      message: `Product verwijderd: ${slug}`,
+      sha: file.sha
+    })
+  });
 
-  const imageSha = await getFileSha(imagePath);
-  if (imageSha) {
-    await fetch(`https://api.github.com/repos/${repo}/contents/${imagePath}`, {
-      method: "DELETE",
-      headers: {
-        Authorization: `token ${githubToken}`,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        message: `Afbeelding verwijderd: ${slug}`,
-        sha: imageSha
-      })
-    });
-  }
-
-  document.getElementById("status").innerHTML = "Product verwijderd!";
   loadProducts();
 }
 
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
