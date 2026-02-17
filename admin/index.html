@@ -94,7 +94,13 @@ function login() {
 }
 
 function slugify(text) {
-  return text.toLowerCase().replace(/\s+/g, "-").replace(/[^\w-]+/g, "");
+  return text
+    .trim() // verwijdert spaties voor en achter
+    .toLowerCase()
+    .replace(/\s+/g, "-")
+    .replace(/[^\w-]+/g, "")
+    .replace(/-+/g, "-")        // meerdere - samenvoegen
+    .replace(/^-+|-+$/g, "");   // begin/eind - verwijderen
 }
 
 async function getFile(path) {
