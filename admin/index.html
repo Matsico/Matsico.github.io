@@ -1,19 +1,135 @@
 <!DOCTYPE html>
-<html>
+<html lang="nl">
 <head>
-  <meta charset="utf-8" />
-  <title>Vin & Vleugel CMS</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<title>Vin & Vleugel Admin</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body { font-family: Arial; max-width: 600px; margin: 40px auto; }
+input, textarea, select, button { width: 100%; margin: 10px 0; padding: 8px; }
+button { cursor: pointer; }
+.hidden { display: none; }
+.success { color: green; }
+.error { color: red; }
+</style>
 </head>
 <body>
-  <div id="nc-root"></div>
 
-  <script>
-    window.addEventListener("message", function (event) {
-      console.log("Message received:", event.data);
-    });
-  </script>
+<h2>Admin Login</h2>
+<input type="password" id="token" placeholder="GitHub Personal Access Token">
+<button onclick="login()">Login</button>
 
-  <script src="https://unpkg.com/decap-cms@3.10.0/dist/decap-cms.js"></script>
+<div id="formSection" class="hidden">
+  <h2>Nieuw Product</h2>
+
+  <input type="text" id="titel" placeholder="Titel">
+
+  <textarea id="beschrijving" placeholder="Beschrijving"></textarea>
+
+  <select id="categorie">
+    <option value="Vissen">Vissen</option>
+    <option value="Vistoebehoren">Vistoebehoren</option>
+    <option value="Vogels">Vogels</option>
+    <option value="Vogeltoebehoren">Vogeltoebehoren</option>
+  </select>
+
+  <input type="file" id="afbeelding" accept="image/*">
+
+  <button onclick="uploadProduct()">Opslaan</button>
+
+  <p id="status"></p>
+</div>
+
+<script>
+
+let githubToken = "";
+const repo = "Matsico/Matsico.github.io";
+
+function login() {
+  githubToken = document.getElementById("token").value;
+  if (!githubToken) return alert("Voer een token in.");
+  document.getElementById("formSection").classList.remove("hidden");
+}
+
+function slugify(text) {
+  return text.toLowerCase().replace(/\s+/g, "-").replace(/[^\w-]+/g, "");
+}
+
+async function getFileSha(path) {
+  const res = await fetch(`https://api.github.com/repos/${repo}/contents/${path}`, {
+    headers: { Authorization: `token ${githubToken}` }
+  });
+
+  if (res.status === 404) return null;
+  const data = await res.json();
+  return data.sha;
+}
+
+async function uploadProduct() {
+  const titel = document.getElementById("titel").value;
+  const beschrijving = document.getElementById("beschrijving").value;
+  const categorie = document.getElementById("categorie").value;
+  const fileInput = document.getElementById("afbeelding");
+
+  if (!titel || !beschrijving || !fileInput.files[0]) {
+    return alert("Vul alles in.");
+  }
+
+  const slug = slugify(titel);
+  const imageFile = fileInput.files[0];
+
+  const reader = new FileReader();
+  reader.onload = async function () {
+    const base64Image = reader.result.split(",")[1];
+
+    try {
+
+      // Upload image
+      await fetch(`https://api.github.com/repos/${repo}/contents/images/${slug}.jpg`, {
+        method: "PUT",
+        headers: {
+          Authorization: `token ${githubToken}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          message: `Afbeelding toegevoegd: ${titel}`,
+          content: base64Image
+        })
+      });
+
+      // Create JSON
+      const productData = {
+        titel,
+        beschrijving,
+        categorie,
+        afbeelding: `images/${slug}.jpg`
+      };
+
+      const jsonContent = btoa(unescape(encodeURIComponent(JSON.stringify(productData, null, 2))));
+
+      await fetch(`https://api.github.com/repos/${repo}/contents/data/assortiment/${slug}.json`, {
+        method: "PUT",
+        headers: {
+          Authorization: `token ${githubToken}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          message: `Product toegevoegd: ${titel}`,
+          content: jsonContent
+        })
+      });
+
+      document.getElementById("status").innerHTML = "<span class='success'>Product succesvol toegevoegd!</span>";
+
+    } catch (err) {
+      document.getElementById("status").innerHTML = "<span class='error'>Er ging iets mis.</span>";
+    }
+  };
+
+  reader.readAsDataURL(imageFile);
+}
+
+</script>
+
 </body>
 </html>
