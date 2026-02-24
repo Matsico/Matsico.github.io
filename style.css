@@ -145,6 +145,36 @@ footer img:hover {
   transform: scale(1.05);
 }
 
+/* Footer links */
+.footer-links {
+  margin: 15px 0;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 14px;
+  transition: 0.3s ease;
+  opacity: 0.9;
+}
+
+.footer-links a:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+/* Mobiel netjes onder elkaar */
+@media (max-width: 768px) {
+  .footer-links {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
 /* ===============================
    TEAM SECTION
    =============================== */
