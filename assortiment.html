@@ -11,210 +11,144 @@
 <style>
 body { padding-top:110px; }
 .product-img { height:250px; object-fit:cover; }
-.filter-bar { margin-bottom:30px; }
+.filter-bar { text-align:center; margin-bottom:30px; }
 </style>
 </head>
 
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-  <div class="container">
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+<div class="container">
+<a class="navbar-brand d-flex align-items-center" href="index.html">
+<img src="images/logo.png" height="40" class="me-2">
+Vin & Vleugel
+</a>
 
-    <a class="navbar-brand d-flex align-items-center" href="/">
-      <img src="images/logo.png" alt="Vin & Vleugel Logo" height="40" class="me-2">
-      Vin & Vleugel
-    </a>
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+<span class="navbar-toggler-icon"></span>
+</button>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navMenu">
-      <ul class="navbar-nav ms-auto">
-
-        <li class="nav-item">
-          <a class="nav-link" href="/">Home</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="/assortiment.html">Assortiment</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="/overons.html">Over ons</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="/contact.html">Contact</a>
-        </li>
-
-      </ul>
-    </div>
-  </div>
+<div class="collapse navbar-collapse" id="navMenu">
+<ul class="navbar-nav ms-auto">
+<li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+<li class="nav-item"><a class="nav-link active" href="assortiment.html">Assortiment</a></li>
+<li class="nav-item"><a class="nav-link" href="overons.html">Over ons</a></li>
+<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+</ul>
+</div>
+</div>
 </nav>
 
 <main class="container">
 
 <h1 class="text-center mb-4">Assortiment</h1>
 
-<!-- FILTER BAR -->
-<div class="filter-bar text-center">
+<!-- FILTERS -->
+<div class="filter-bar">
 
-<button class="btn btn-dark me-2" onclick="filterAlles()">Alles</button>
+<button class="btn btn-dark m-1" onclick="filterAll()">Alles</button>
 
-<div class="btn-group me-2">
-  <button class="btn btn-outline-dark dropdown-toggle" data-bs-toggle="dropdown">
-    Vissen
-  </button>
-  <ul class="dropdown-menu">
-    <li><a class="dropdown-item" onclick="filterHoofd('Vissen')">Alles Vissen</a></li>
-    <li><a class="dropdown-item" onclick="filterDieren('Vissen')">Vissen</a></li>
-    <li><hr class="dropdown-divider"></li>
-    <li><a class="dropdown-item" onclick="filterSub('Vissen','Aquaria')">Aquaria</a></li>
-    <li><a class="dropdown-item" onclick="filterSub('Vissen','Techniek')">Techniek</a></li>
-    <li><a class="dropdown-item" onclick="filterSub('Vissen','Decoratie')">Decoratie</a></li>
-    <li><a class="dropdown-item" onclick="filterSub('Vissen','Planten')">Planten</a></li>
-    <li><a class="dropdown-item" onclick="filterSub('Vissen','Plantenvoeding')">Plantenvoeding</a></li>
-    <li><a class="dropdown-item" onclick="filterSub('Vissen','Voeders')">Voeders</a></li>
-    <li><a class="dropdown-item" onclick="filterSub('Vissen','Medicatie')">Medicatie</a></li>
-    <li><a class="dropdown-item" onclick="filterSub('Vissen','Diverse')">Diverse</a></li>
-  </ul>
+<div class="btn-group m-1">
+<button class="btn btn-outline-dark dropdown-toggle" data-bs-toggle="dropdown">Vissen</button>
+<ul class="dropdown-menu">
+<li><a class="dropdown-item" onclick="filterHoofd('Vissen')">Alle Vissen</a></li>
+<li><hr class="dropdown-divider"></li>
+<li><a class="dropdown-item" onclick="filterSub('Vissen','Aquaria')">Aquaria</a></li>
+<li><a class="dropdown-item" onclick="filterSub('Vissen','Techniek')">Techniek</a></li>
+<li><a class="dropdown-item" onclick="filterSub('Vissen','Decoratie')">Decoratie</a></li>
+<li><a class="dropdown-item" onclick="filterSub('Vissen','Planten')">Planten</a></li>
+<li><a class="dropdown-item" onclick="filterSub('Vissen','Plantenvoeding')">Plantenvoeding</a></li>
+<li><a class="dropdown-item" onclick="filterSub('Vissen','Voeders')">Voeders</a></li>
+<li><a class="dropdown-item" onclick="filterSub('Vissen','Medicatie')">Medicatie</a></li>
+<li><a class="dropdown-item" onclick="filterSub('Vissen','Diverse')">Diverse</a></li>
+</ul>
 </div>
 
-<div class="btn-group">
-  <button class="btn btn-outline-dark dropdown-toggle" data-bs-toggle="dropdown">
-    Vogels
-  </button>
-  <ul class="dropdown-menu">
-    <li><a class="dropdown-item" onclick="filterHoofd('Vogels')">Alles Vogels</a></li>
-    <li><a class="dropdown-item" onclick="filterDieren('Vogels')">Vogels</a></li>
-    <li><hr class="dropdown-divider"></li>
-    <li><a class="dropdown-item" onclick="filterSub('Vogels','Kooien')">Kooien</a></li>
-    <li><a class="dropdown-item" onclick="filterSub('Vogels','Volières')">Volières</a></li>
-    <li><a class="dropdown-item" onclick="filterSub('Vogels','Voeders')">Voeders</a></li>
-    <li><a class="dropdown-item" onclick="filterSub('Vogels','Bodembedekking')">Bodembedekking</a></li>
-    <li><a class="dropdown-item" onclick="filterSub('Vogels','Verrijking')">Verrijking</a></li>
-    <li><a class="dropdown-item" onclick="filterSub('Vogels','Techniek')">Techniek</a></li>
-    <li><a class="dropdown-item" onclick="filterSub('Vogels','Transport')">Transport</a></li>
-    <li><a class="dropdown-item" onclick="filterSub('Vogels','Diverse')">Diverse</a></li>
-  </ul>
+<div class="btn-group m-1">
+<button class="btn btn-outline-dark dropdown-toggle" data-bs-toggle="dropdown">Vogels</button>
+<ul class="dropdown-menu">
+<li><a class="dropdown-item" onclick="filterHoofd('Vogels')">Alle Vogels</a></li>
+<li><hr class="dropdown-divider"></li>
+<li><a class="dropdown-item" onclick="filterSub('Vogels','Kooien')">Kooien</a></li>
+<li><a class="dropdown-item" onclick="filterSub('Vogels','Volières')">Volières</a></li>
+<li><a class="dropdown-item" onclick="filterSub('Vogels','Voeders')">Voeders</a></li>
+<li><a class="dropdown-item" onclick="filterSub('Vogels','Bodembedekking')">Bodembedekking</a></li>
+<li><a class="dropdown-item" onclick="filterSub('Vogels','Verrijking')">Verrijking</a></li>
+<li><a class="dropdown-item" onclick="filterSub('Vogels','Techniek')">Techniek</a></li>
+<li><a class="dropdown-item" onclick="filterSub('Vogels','Transport')">Transport</a></li>
+<li><a class="dropdown-item" onclick="filterSub('Vogels','Diverse')">Diverse</a></li>
+</ul>
 </div>
 
 </div>
 
-<!-- PRODUCT GRID -->
 <div id="product-container" class="row"></div>
 
 </main>
 
-<footer class="footer-custom text-center py-4 mt-5">
-  <img src="images/logo.png" height="60">
-  <p>© 2026 Vin & Vleugel</p>
+<footer class="text-center py-4 bg-dark text-white mt-5">
+<img src="images/logo.png" height="50">
+<p class="mb-0 mt-2">© 2026 Vin & Vleugel</p>
 </footer>
 
 <script>
 
 let alleProducten = [];
 
-/* =========================
-   PRODUCTEN LADEN
-========================= */
-
 async function laadProducten(){
-
-  const res = await fetch(
-  "https://api.github.com/repos/Matsico/Matsico.github.io/contents/data/assortiment");
-
-  const files = await res.json();
-  alleProducten = [];
-
-  for(const file of files){
-    if(!file.name.endsWith(".json")) continue;
-    const productRes = await fetch(file.download_url);
-    const product = await productRes.json();
-    alleProducten.push(product);
-  }
-
-  toonProducten(alleProducten);
+const res = await fetch("data/assortiment.json");
+alleProducten = await res.json();
+toonProducten(alleProducten);
 }
 
-/* =========================
-   TONEN
-========================= */
+function toonProducten(lijst){
+const container = document.getElementById("product-container");
+container.innerHTML="";
 
-function toonProducten(producten){
-
-  const container = document.getElementById("product-container");
-  container.innerHTML = "";
-
-  if(producten.length === 0){
-    container.innerHTML = "<p class='text-center'>Geen producten gevonden.</p>";
-    return;
-  }
-
-  producten.forEach(product=>{
-    container.innerHTML += `
-      <div class="col-md-4 mb-4">
-        <div class="card h-100 shadow-sm">
-          <img src="${product.afbeelding}"
-               class="card-img-top product-img"
-               alt="${product.titel}">
-          <div class="card-body d-flex flex-column">
-            <h5>${product.titel}</h5>
-            <p>${product.beschrijving}</p>
-            <small class="text-muted">
-              ${product.hoofdcategorie}
-              ${product.subcategorie ? " • " + product.subcategorie : ""}
-            </small>
-            <div class="mt-auto">
-              <p class="fw-bold fs-5">€ ${Number(product.prijs).toFixed(2)}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    `;
-  });
+if(lijst.length===0){
+container.innerHTML="<p class='text-center'>Geen producten gevonden.</p>";
+return;
 }
 
-/* =========================
-   FILTERS
-========================= */
-
-function filterAlles(){
-  toonProducten(alleProducten);
+lijst.forEach(p=>{
+container.innerHTML+=`
+<div class="col-md-4 mb-4">
+<div class="card h-100 shadow-sm">
+<img src="${p.afbeelding}" class="card-img-top product-img">
+<div class="card-body d-flex flex-column">
+<h5>${p.titel}</h5>
+<p>${p.beschrijving}</p>
+<small>${p.hoofdcategorie}${p.subcategorie? " • "+p.subcategorie:""}</small>
+<div class="mt-auto">
+<p class="fw-bold mt-2">€ ${Number(p.prijs).toFixed(2)}</p>
+</div>
+</div>
+</div>
+</div>`;
+});
 }
 
-function filterHoofd(hoofdcategorie){
-  const gefilterd = alleProducten.filter(p =>
-    p.hoofdcategorie === hoofdcategorie
-  );
-  toonProducten(gefilterd);
+function filterAll(){
+toonProducten(alleProducten);
 }
 
-function filterSub(hoofdcategorie, subcategorie){
-  const gefilterd = alleProducten.filter(p =>
-    p.hoofdcategorie === hoofdcategorie &&
-    p.producttype === "Product" &&
-    p.subcategorie === subcategorie
-  );
-  toonProducten(gefilterd);
+function filterHoofd(hoofd){
+const gefilterd = alleProducten.filter(p=>p.hoofdcategorie===hoofd);
+toonProducten(gefilterd);
 }
 
-function filterDieren(hoofdcategorie){
-  const gefilterd = alleProducten.filter(p =>
-    p.hoofdcategorie === hoofdcategorie &&
-    p.producttype === "Dier"
-  );
-  toonProducten(gefilterd);
+function filterSub(hoofd,sub){
+const gefilterd = alleProducten.filter(p=>
+p.hoofdcategorie===hoofd && p.subcategorie===sub
+);
+toonProducten(gefilterd);
 }
-
-/* ========================= */
 
 laadProducten();
 
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
 </body>
 </html>

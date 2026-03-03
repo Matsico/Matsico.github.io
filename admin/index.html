@@ -3,213 +3,233 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Assortiment | Vin & Vleugel</title>
+<title>Vin & Vleugel | Admin</title>
 
-<!-- Bootstrap CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="../style.css">
 
 <style>
-body { padding-top: 90px; }
-.product-img { height: 250px; object-fit: cover; }
-.filter-bar { margin-bottom: 30px; }
+body { padding-top:110px; }
+.hidden { display:none; }
+.product-img { height:120px; object-fit:cover; }
 </style>
 </head>
-
 <body>
 
-<!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-  <div class="container">
-    <a class="navbar-brand d-flex align-items-center" href="/">
-      <img src="images/logo.png" height="40" class="me-2">
-      Vin & Vleugel
-    </a>
-
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navMenu">
-      <ul class="navbar-nav ms-auto">
-
-        <li class="nav-item">
-          <a class="nav-link" href="/">Home</a>
-        </li>
-
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown">
-            Assortiment
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="/assortiment.html">Assortiment</a></li>
-            <li><a class="dropdown-item" href="/services.html">Services</a></li>
-          </ul>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="/overons.html">Over ons</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="/contact.html">Contact</a>
-        </li>
-
-      </ul>
-    </div>
-  </div>
+<nav class="navbar navbar-dark bg-dark fixed-top">
+<div class="container">
+<a class="navbar-brand" href="../index.html">
+<img src="../images/logo.png" height="40" class="me-2">
+Vin & Vleugel Admin
+</a>
+</div>
 </nav>
 
-<main class="container">
+<div class="container">
 
-<h1 class="text-center mb-4">Assortiment</h1>
-
-<!-- FILTER BAR -->
-<div class="filter-bar text-center">
-
-<button class="btn btn-dark me-2" onclick="filterAlles()">Alles</button>
-
-<!-- VISSEN -->
-<div class="btn-group me-2">
-  <button class="btn btn-outline-dark dropdown-toggle" data-bs-toggle="dropdown">
-    Vissen
-  </button>
-  <ul class="dropdown-menu">
-    <li><a class="dropdown-item" onclick="filterHoofd('Vissen')">Alles Vissen</a></li>
-    <li><a class="dropdown-item" onclick="filterDieren('Vissen')">Vissen</a></li>
-    <li><hr class="dropdown-divider"></li>
-    <li><a class="dropdown-item" onclick="filterSub('Vissen','Aquaria')">Aquaria</a></li>
-    <li><a class="dropdown-item" onclick="filterSub('Vissen','Techniek')">Techniek</a></li>
-    <li><a class="dropdown-item" onclick="filterSub('Vissen','Decoratie')">Decoratie</a></li>
-    <li><a class="dropdown-item" onclick="filterSub('Vissen','Planten')">Planten</a></li>
-    <li><a class="dropdown-item" onclick="filterSub('Vissen','Plantenvoeding')">Plantenvoeding</a></li>
-    <li><a class="dropdown-item" onclick="filterSub('Vissen','Voeders')">Voeders</a></li>
-    <li><a class="dropdown-item" onclick="filterSub('Vissen','Medicatie')">Medicatie</a></li>
-    <li><a class="dropdown-item" onclick="filterSub('Vissen','Diverse')">Diverse</a></li>
-  </ul>
+<!-- LOGIN -->
+<div id="loginSection">
+<h3>Login</h3>
+<input type="password" id="token" class="form-control mb-2" placeholder="GitHub Token">
+<button class="btn btn-dark" onclick="login()">Login</button>
 </div>
 
-<!-- VOGELS -->
-<div class="btn-group">
-  <button class="btn btn-outline-dark dropdown-toggle" data-bs-toggle="dropdown">
-    Vogels
-  </button>
-  <ul class="dropdown-menu">
-    <li><a class="dropdown-item" onclick="filterHoofd('Vogels')">Alles Vogels</a></li>
-    <li><a class="dropdown-item" onclick="filterDieren('Vogels')">Vogels</a></li>
-    <li><hr class="dropdown-divider"></li>
-    <li><a class="dropdown-item" onclick="filterSub('Vogels','Kooien')">Kooien</a></li>
-    <li><a class="dropdown-item" onclick="filterSub('Vogels','Volières')">Volières</a></li>
-    <li><a class="dropdown-item" onclick="filterSub('Vogels','Voeders')">Voeders</a></li>
-    <li><a class="dropdown-item" onclick="filterSub('Vogels','Bodembedekking')">Bodembedekking</a></li>
-    <li><a class="dropdown-item" onclick="filterSub('Vogels','Verrijking')">Verrijking</a></li>
-    <li><a class="dropdown-item" onclick="filterSub('Vogels','Techniek')">Techniek</a></li>
-    <li><a class="dropdown-item" onclick="filterSub('Vogels','Transport')">Transport</a></li>
-    <li><a class="dropdown-item" onclick="filterSub('Vogels','Diverse')">Diverse</a></li>
-  </ul>
-</div>
+<!-- ADMIN -->
+<div id="adminSection" class="hidden">
+
+<h3 class="mt-4">Nieuw / Bewerken</h3>
+
+<input type="hidden" id="editIndex">
+
+<input type="text" id="titel" class="form-control mb-2" placeholder="Titel">
+<textarea id="beschrijving" class="form-control mb-2" placeholder="Beschrijving"></textarea>
+<input type="number" id="prijs" class="form-control mb-2" placeholder="Prijs">
+
+<select id="producttype" class="form-select mb-2">
+<option value="Dier">Dier</option>
+<option value="Product">Product</option>
+</select>
+
+<select id="hoofdcategorie" class="form-select mb-2">
+<option value="Vissen">Vissen</option>
+<option value="Vogels">Vogels</option>
+</select>
+
+<select id="subcategorie" class="form-select mb-2">
+<option value="">Geen</option>
+<option>Aquaria</option>
+<option>Techniek</option>
+<option>Decoratie</option>
+<option>Planten</option>
+<option>Plantenvoeding</option>
+<option>Voeders</option>
+<option>Medicatie</option>
+<option>Diverse</option>
+<option>Kooien</option>
+<option>Volières</option>
+<option>Bodembedekking</option>
+<option>Verrijking</option>
+<option>Transport</option>
+</select>
+
+<input type="file" id="afbeelding" class="form-control mb-2" accept="image/*">
+
+<button class="btn btn-success" onclick="saveProduct()">Opslaan</button>
+
+<hr>
+
+<h3>Producten</h3>
+<div id="productList" class="row"></div>
 
 </div>
-
-<!-- PRODUCT GRID -->
-<div id="product-container" class="row"></div>
-
-</main>
-
-<footer class="text-center py-4 mt-5 bg-dark text-white">
-  <img src="images/logo.png" height="60">
-  <p>© 2026 Vin & Vleugel</p>
-</footer>
+</div>
 
 <script>
 
-let alleProducten = [];
+let token = "";
+let producten = [];
+const repo = "Matsico/Matsico.github.io";
+const bestandPad = "data/assortiment.json";
 
-async function laadProducten(){
-  const res = await fetch(
-    "https://api.github.com/repos/Matsico/Matsico.github.io/contents/data/assortiment"
-  );
+function login(){
+token = document.getElementById("token").value;
+if(!token) return alert("Token nodig");
 
-  const files = await res.json();
-  alleProducten = [];
+document.getElementById("loginSection").classList.add("hidden");
+document.getElementById("adminSection").classList.remove("hidden");
 
-  for(const file of files){
-    if(!file.name.endsWith(".json")) continue;
-    const productRes = await fetch(file.download_url);
-    const product = await productRes.json();
-    alleProducten.push(product);
-  }
-
-  toonProducten(alleProducten);
+loadData();
 }
 
-function toonProducten(producten){
-  const container = document.getElementById("product-container");
-  container.innerHTML = "";
-
-  if(producten.length === 0){
-    container.innerHTML = "<p class='text-center'>Geen producten gevonden.</p>";
-    return;
-  }
-
-  producten.forEach(product=>{
-    container.innerHTML += `
-      <div class="col-md-4 mb-4">
-        <div class="card h-100 shadow-sm">
-          <img src="${product.afbeelding}" class="card-img-top product-img">
-          <div class="card-body d-flex flex-column">
-            <h5>${product.titel}</h5>
-            <p>${product.beschrijving}</p>
-            <small class="text-muted">
-              ${product.hoofdcategorie}
-              ${product.subcategorie ? " • " + product.subcategorie : ""}
-            </small>
-            <div class="mt-auto">
-              <p class="fw-bold fs-5">€ ${Number(product.prijs).toFixed(2)}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    `;
-  });
+async function getFile(){
+const res = await fetch(
+`https://api.github.com/repos/${repo}/contents/${bestandPad}`,
+{headers:{Authorization:`token ${token}`}}
+);
+return res.json();
 }
 
-function filterAlles(){
-  toonProducten(alleProducten);
+async function loadData(){
+const file = await getFile();
+producten = JSON.parse(atob(file.content));
+render();
 }
 
-function filterHoofd(cat){
-  toonProducten(
-    alleProducten.filter(p => p.hoofdcategorie === cat)
-  );
+function render(){
+const container = document.getElementById("productList");
+container.innerHTML="";
+
+producten.forEach((p,i)=>{
+container.innerHTML+=`
+<div class="col-md-4 mb-4">
+<div class="card p-3">
+<img src="../${p.afbeelding}" class="product-img mb-2">
+<h5>${p.titel}</h5>
+<small>${p.hoofdcategorie} ${p.subcategorie? "• "+p.subcategorie:""}</small>
+<p>${p.beschrijving}</p>
+<strong>€ ${p.prijs}</strong>
+<div class="mt-2">
+<button class="btn btn-warning btn-sm" onclick="edit(${i})">Edit</button>
+<button class="btn btn-danger btn-sm" onclick="removeProduct(${i})">Delete</button>
+</div>
+</div>
+</div>`;
+});
 }
 
-function filterDieren(cat){
-  toonProducten(
-    alleProducten.filter(p =>
-      p.hoofdcategorie === cat &&
-      p.producttype === "Dier"
-    )
-  );
+function edit(i){
+const p = producten[i];
+document.getElementById("editIndex").value=i;
+document.getElementById("titel").value=p.titel;
+document.getElementById("beschrijving").value=p.beschrijving;
+document.getElementById("prijs").value=p.prijs;
+document.getElementById("producttype").value=p.producttype;
+document.getElementById("hoofdcategorie").value=p.hoofdcategorie;
+document.getElementById("subcategorie").value=p.subcategorie || "";
 }
 
-function filterSub(cat, sub){
-  toonProducten(
-    alleProducten.filter(p =>
-      p.hoofdcategorie === cat &&
-      p.producttype === "Product" &&
-      p.subcategorie === sub
-    )
-  );
+function removeProduct(i){
+if(!confirm("Verwijderen?")) return;
+producten.splice(i,1);
+upload();
 }
 
-laadProducten();
+async function saveProduct(){
+
+const index = document.getElementById("editIndex").value;
+const titel = document.getElementById("titel").value;
+const beschrijving = document.getElementById("beschrijving").value;
+const prijs = document.getElementById("prijs").value;
+const producttype = document.getElementById("producttype").value;
+const hoofd = document.getElementById("hoofdcategorie").value;
+const sub = document.getElementById("subcategorie").value;
+const fileInput = document.getElementById("afbeelding");
+
+let afbeelding = "";
+
+if(fileInput.files[0]){
+const reader = new FileReader();
+reader.onload = async function(){
+const base64 = reader.result.split(",")[1];
+const imgPath = "images/"+titel.toLowerCase().replace(/\s+/g,"-")+".jpg";
+
+await fetch(`https://api.github.com/repos/${repo}/contents/${imgPath}`,{
+method:"PUT",
+headers:{Authorization:`token ${token}`,"Content-Type":"application/json"},
+body:JSON.stringify({
+message:"Upload image",
+content:base64
+})
+});
+
+afbeelding = imgPath;
+saveToArray();
+};
+reader.readAsDataURL(fileInput.files[0]);
+}else{
+saveToArray();
+}
+
+function saveToArray(){
+const obj={
+titel,
+beschrijving,
+prijs,
+producttype,
+hoofdcategorie:hoofd,
+subcategorie: producttype==="Product"?sub:"",
+afbeelding: afbeelding || producten[index]?.afbeelding || ""
+};
+
+if(index===""){
+producten.push(obj);
+}else{
+producten[index]=obj;
+}
+
+upload();
+}
+}
+
+async function upload(){
+
+const file = await getFile();
+
+await fetch(`https://api.github.com/repos/${repo}/contents/${bestandPad}`,{
+method:"PUT",
+headers:{Authorization:`token ${token}`,"Content-Type":"application/json"},
+body:JSON.stringify({
+message:"Update assortiment",
+content:btoa(JSON.stringify(producten,null,2)),
+sha:file.sha
+})
+});
+
+loadData();
+}
 
 </script>
 
-<!-- Bootstrap JS (BELANGRIJK!) -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
 </body>
 </html>
