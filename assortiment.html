@@ -30,12 +30,10 @@ body { padding-top:110px; }
 
 <h1 class="text-center mb-4">Assortiment</h1>
 
-<!-- FILTERS -->
+<!-- FILTER BAR -->
 <div class="filter-bar text-center">
 
-<div class="btn-group me-2">
-  <button class="btn btn-dark" onclick="filterAlles()">Alles</button>
-</div>
+<button class="btn btn-dark me-2" onclick="filterAlles()">Alles</button>
 
 <div class="btn-group me-2">
   <button class="btn btn-outline-dark dropdown-toggle" data-bs-toggle="dropdown">
@@ -75,7 +73,7 @@ body { padding-top:110px; }
 
 </div>
 
-<!-- PRODUCTEN -->
+<!-- PRODUCT GRID -->
 <div id="product-container" class="row"></div>
 
 </main>
@@ -88,6 +86,10 @@ body { padding-top:110px; }
 <script>
 
 let alleProducten = [];
+
+/* =========================
+   PRODUCTEN LADEN
+========================= */
 
 async function laadProducten(){
 
@@ -107,38 +109,47 @@ async function laadProducten(){
   toonProducten(alleProducten);
 }
 
+/* =========================
+   TONEN
+========================= */
+
 function toonProducten(producten){
 
   const container = document.getElementById("product-container");
-  container.innerHTML="";
+  container.innerHTML = "";
 
   if(producten.length === 0){
-    container.innerHTML="<p class='text-center'>Geen producten gevonden.</p>";
+    container.innerHTML = "<p class='text-center'>Geen producten gevonden.</p>";
     return;
   }
 
   producten.forEach(product=>{
     container.innerHTML += `
-    <div class="col-md-4 mb-4">
-      <div class="card h-100 shadow-sm">
-        <img src="${product.afbeelding}" 
-             class="card-img-top product-img"
-             alt="${product.titel}">
-        <div class="card-body d-flex flex-column">
-          <h5>${product.titel}</h5>
-          <p>${product.beschrijving}</p>
-          <small class="text-muted">
-            ${product.hoofdcategorie}
-            ${product.subcategorie ? " • " + product.subcategorie : ""}
-          </small>
-          <div class="mt-auto">
-            <p class="fw-bold fs-5">€ ${Number(product.prijs).toFixed(2)}</p>
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm">
+          <img src="${product.afbeelding}"
+               class="card-img-top product-img"
+               alt="${product.titel}">
+          <div class="card-body d-flex flex-column">
+            <h5>${product.titel}</h5>
+            <p>${product.beschrijving}</p>
+            <small class="text-muted">
+              ${product.hoofdcategorie}
+              ${product.subcategorie ? " • " + product.subcategorie : ""}
+            </small>
+            <div class="mt-auto">
+              <p class="fw-bold fs-5">€ ${Number(product.prijs).toFixed(2)}</p>
+            </div>
           </div>
         </div>
       </div>
-    </div>`;
+    `;
   });
 }
+
+/* =========================
+   FILTERS
+========================= */
 
 function filterAlles(){
   toonProducten(alleProducten);
@@ -154,13 +165,13 @@ function filterHoofd(hoofdcategorie){
 function filterSub(hoofdcategorie, subcategorie){
   const gefilterd = alleProducten.filter(p =>
     p.hoofdcategorie === hoofdcategorie &&
-    (
-      p.producttype === "Dier" ||
-      p.subcategorie === subcategorie
-    )
+    p.producttype === "Product" &&
+    p.subcategorie === subcategorie
   );
   toonProducten(gefilterd);
 }
+
+/* ========================= */
 
 laadProducten();
 
