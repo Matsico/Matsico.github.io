@@ -9,14 +9,9 @@
 <link rel="stylesheet" href="../style.css">
 
 <style>
-body { padding-top: 110px; }
-.hidden { display: none; }
-.product-img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  border-radius: 6px;
-}
+body { padding-top:110px; }
+.hidden { display:none; }
+.product-img { height:140px; object-fit:cover; }
 </style>
 </head>
 
@@ -24,7 +19,7 @@ body { padding-top: 110px; }
 
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
   <div class="container">
-    <a class="navbar-brand d-flex align-items-center" href="../index.html">
+    <a class="navbar-brand" href="../index.html">
       <img src="../images/logo.png" height="40" class="me-2">
       Vin & Vleugel Admin
     </a>
@@ -33,232 +28,227 @@ body { padding-top: 110px; }
 
 <div class="container">
 
-  <!-- LOGIN -->
-  <div id="loginSection">
-    <h2>Admin Login</h2>
-    <input type="password" id="token" class="form-control mb-2" placeholder="GitHub Token">
-    <button class="btn btn-dark" onclick="login()">Login</button>
-  </div>
-
-  <!-- ADMIN -->
-  <div id="adminSection" class="hidden">
-
-    <h2 class="mt-4">Nieuw / Bewerken Product</h2>
-
-    <input type="hidden" id="editSlug">
-
-    <input type="text" id="titel" class="form-control mb-2" placeholder="Titel">
-    <textarea id="beschrijving" class="form-control mb-2" placeholder="Beschrijving"></textarea>
-
-    <input type="number" id="prijs" class="form-control mb-2" placeholder="Prijs">
-
-    <select id="categorie" class="form-select mb-2">
-      <option value="Vissen">Vissen</option>
-      <option value="Vistoebehoren">Vistoebehoren</option>
-      <option value="Vogels">Vogels</option>
-      <option value="Vogeltoebehoren">Vogeltoebehoren</option>
-    </select>
-
-    <input type="file" id="afbeelding" class="form-control mb-2" accept="image/*">
-
-    <button class="btn btn-success" onclick="saveProduct()">Opslaan</button>
-
-    <hr>
-
-    <h2>Producten</h2>
-    <div id="productList" class="row"></div>
-
-    <p id="status" class="mt-3"></p>
-
-  </div>
+<!-- LOGIN -->
+<div id="loginSection">
+  <h2>Login</h2>
+  <input type="password" id="token" class="form-control mb-2" placeholder="GitHub Token">
+  <button class="btn btn-dark" onclick="login()">Login</button>
 </div>
 
-<footer class="text-center mt-5 p-4">
-  <img src="../images/logo.png" height="60">
-  <p class="mb-0">© 2026 Vin & Vleugel</p>
-</footer>
+<!-- ADMIN -->
+<div id="adminSection" class="hidden">
+
+<h3 class="mt-4">Nieuw / Bewerken Product</h3>
+
+<input type="hidden" id="editSlug">
+
+<input type="text" id="titel" class="form-control mb-2" placeholder="Titel">
+<textarea id="beschrijving" class="form-control mb-2" placeholder="Beschrijving"></textarea>
+<input type="number" id="prijs" class="form-control mb-2" placeholder="Prijs">
+
+<select id="producttype" class="form-select mb-2" onchange="toggleSubcategorie()">
+  <option value="Dier">Dier</option>
+  <option value="Product">Product</option>
+</select>
+
+<select id="hoofdcategorie" class="form-select mb-2" onchange="updateSubcategorie()">
+  <option value="Vissen">Vissen</option>
+  <option value="Vogels">Vogels</option>
+</select>
+
+<select id="subcategorie" class="form-select mb-2"></select>
+
+<input type="file" id="afbeelding" class="form-control mb-2" accept="image/*">
+
+<button class="btn btn-success" onclick="saveProduct()">Opslaan</button>
+
+<hr>
+<h3>Producten</h3>
+<div id="productList" class="row"></div>
+
+</div>
+</div>
 
 <script>
 
 let githubToken = "";
 const repo = "Matsico/Matsico.github.io";
 
-function login() {
-  githubToken = document.getElementById("token").value;
-  if (!githubToken) return alert("Voer token in.");
+const categorieData = {
+  Vissen: [
+    "Aquaria","Techniek","Decoratie","Planten",
+    "Plantenvoeding","Voeders","Medicatie","Diverse"
+  ],
+  Vogels: [
+    "Kooien","Volières","Voeders","Bodembedekking",
+    "Verrijking","Techniek","Transport","Diverse"
+  ]
+};
 
+function login(){
+  githubToken = document.getElementById("token").value;
+  if(!githubToken) return alert("Token nodig");
   document.getElementById("loginSection").classList.add("hidden");
   document.getElementById("adminSection").classList.remove("hidden");
-
   loadProducts();
 }
 
-function slugify(text) {
-  return text
-    .trim() // verwijdert spaties voor en achter
-    .toLowerCase()
-    .replace(/\s+/g, "-")
-    .replace(/[^\w-]+/g, "")
-    .replace(/-+/g, "-")        // meerdere - samenvoegen
-    .replace(/^-+|-+$/g, "");   // begin/eind - verwijderen
+function slugify(text){
+  return text.trim().toLowerCase()
+    .replace(/\s+/g,"-")
+    .replace(/[^\w-]+/g,"")
+    .replace(/-+/g,"-")
+    .replace(/^-+|-+$/g,"");
 }
 
-async function getFile(path) {
-  const res = await fetch(`https://api.github.com/repos/${repo}/contents/${path}`, {
-    headers: { Authorization: `token ${githubToken}` }
+function updateSubcategorie(){
+  const hoofd = document.getElementById("hoofdcategorie").value;
+  const sub = document.getElementById("subcategorie");
+  sub.innerHTML="";
+  categorieData[hoofd].forEach(c=>{
+    sub.innerHTML+=`<option value="${c}">${c}</option>`;
   });
+}
 
-  if (res.status === 404) return null;
+function toggleSubcategorie(){
+  const type = document.getElementById("producttype").value;
+  document.getElementById("subcategorie").style.display =
+    type==="Product" ? "block" : "none";
+}
+
+updateSubcategorie();
+toggleSubcategorie();
+
+async function getFile(path){
+  const res = await fetch(
+    `https://api.github.com/repos/${repo}/contents/${path}`,
+    {headers:{Authorization:`token ${githubToken}`}}
+  );
+  if(res.status===404) return null;
   return res.json();
 }
 
-async function loadProducts() {
+async function loadProducts(){
   const container = document.getElementById("productList");
-  container.innerHTML = "Laden...";
+  container.innerHTML="Laden...";
 
-  const res = await fetch(`https://api.github.com/repos/${repo}/contents/data/assortiment`, {
-    headers: { Authorization: `token ${githubToken}` }
-  });
+  const res = await fetch(
+  `https://api.github.com/repos/${repo}/contents/data/assortiment`,
+  {headers:{Authorization:`token ${githubToken}`}});
 
   const files = await res.json();
-  container.innerHTML = "";
+  container.innerHTML="";
 
-  for (const file of files) {
-
-    if (!file.name.endsWith(".json")) continue;
-
+  for(const file of files){
+    if(!file.name.endsWith(".json")) continue;
     const dataFile = await getFile(file.path);
-    const content = JSON.parse(atob(dataFile.content));
+    const data = JSON.parse(atob(dataFile.content));
+    const slug = file.name.replace(".json","");
 
-    const slug = file.name.replace(".json", "");
-
-    container.innerHTML += `
-      <div class="col-md-4 mb-4">
-        <div class="card h-100 shadow-sm p-3">
-          <img src="../${content.afbeelding}" class="product-img mb-2">
-          <h5>${content.titel}</h5>
-          <p>${content.beschrijving}</p>
-          <p><strong>€ ${Number(content.prijs).toFixed(2)}</strong></p>
-          <p class="text-muted">${content.categorie}</p>
-
-          <div class="mt-auto d-flex gap-2">
-            <button class="btn btn-warning btn-sm" onclick="editProduct('${slug}')">Edit</button>
-            <button class="btn btn-danger btn-sm" onclick="deleteProduct('${slug}')">Delete</button>
-          </div>
+    container.innerHTML+=`
+    <div class="col-md-4 mb-4">
+      <div class="card p-3">
+        <img src="../${data.afbeelding}" class="product-img mb-2">
+        <h5>${data.titel}</h5>
+        <small>${data.hoofdcategorie}</small><br>
+        ${data.producttype==="Product" ? `<small>${data.subcategorie}</small>` : ""}
+        <p>${data.beschrijving}</p>
+        <strong>€ ${data.prijs}</strong>
+        <div class="mt-2">
+          <button class="btn btn-warning btn-sm" onclick="editProduct('${slug}')">Edit</button>
+          <button class="btn btn-danger btn-sm" onclick="deleteProduct('${slug}')">Delete</button>
         </div>
       </div>
-    `;
+    </div>`;
   }
 }
 
-async function saveProduct() {
+async function saveProduct(){
 
-  const titel = document.getElementById("titel").value;
-  const beschrijving = document.getElementById("beschrijving").value;
-  const prijs = document.getElementById("prijs").value;
-  const categorie = document.getElementById("categorie").value;
-  const fileInput = document.getElementById("afbeelding");
-  let slug = document.getElementById("editSlug").value;
+const titel = document.getElementById("titel").value;
+const beschrijving = document.getElementById("beschrijving").value;
+const prijs = document.getElementById("prijs").value;
+const producttype = document.getElementById("producttype").value;
+const hoofd = document.getElementById("hoofdcategorie").value;
+const sub = document.getElementById("subcategorie").value;
+const fileInput = document.getElementById("afbeelding");
 
-  if (!slug) slug = slugify(titel);
+let slug = document.getElementById("editSlug").value;
+if(!slug) slug = slugify(titel);
 
-  let afbeeldingPath = `images/${slug}.jpg`;
+let afbeeldingPath = `images/${slug}.jpg`;
 
-  if (fileInput.files[0]) {
-    const reader = new FileReader();
-    reader.onload = async function () {
-
-      const base64Image = reader.result.split(",")[1];
-
-      await fetch(`https://api.github.com/repos/${repo}/contents/${afbeeldingPath}`, {
-        method: "PUT",
-        headers: {
-          Authorization: `token ${githubToken}`,
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          message: `Afbeelding opgeslagen: ${titel}`,
-          content: base64Image
-        })
-      });
-
-      saveJson(slug, titel, beschrijving, prijs, categorie, afbeeldingPath);
-    };
-
-    reader.readAsDataURL(fileInput.files[0]);
-
-  } else {
-    saveJson(slug, titel, beschrijving, prijs, categorie, afbeeldingPath);
-  }
+if(fileInput.files[0]){
+const reader = new FileReader();
+reader.onload = async function(){
+const base64 = reader.result.split(",")[1];
+await fetch(`https://api.github.com/repos/${repo}/contents/${afbeeldingPath}`,{
+method:"PUT",
+headers:{Authorization:`token ${githubToken}`,"Content-Type":"application/json"},
+body:JSON.stringify({message:`Afbeelding ${titel}`,content:base64})
+});
+saveJson(slug,titel,beschrijving,prijs,producttype,hoofd,sub,afbeeldingPath);
+};
+reader.readAsDataURL(fileInput.files[0]);
+}else{
+saveJson(slug,titel,beschrijving,prijs,producttype,hoofd,sub,afbeeldingPath);
+}
 }
 
-async function saveJson(slug, titel, beschrijving, prijs, categorie, afbeeldingPath) {
+async function saveJson(slug,titel,beschrijving,prijs,producttype,hoofd,sub,afbeeldingPath){
 
-  const path = `data/assortiment/${slug}.json`;
-  const existing = await getFile(path);
+const path = `data/assortiment/${slug}.json`;
+const existing = await getFile(path);
 
-  const productData = {
-    titel,
-    beschrijving,
-    prijs,
-    categorie,
-    afbeelding: afbeeldingPath
-  };
+const data = {
+titel,beschrijving,prijs,
+producttype,
+hoofdcategorie:hoofd,
+...(producttype==="Product" && {subcategorie:sub}),
+afbeelding:afbeeldingPath
+};
 
-  const content = btoa(unescape(encodeURIComponent(JSON.stringify(productData, null, 2))));
+const content = btoa(JSON.stringify(data,null,2));
 
-  await fetch(`https://api.github.com/repos/${repo}/contents/${path}`, {
-    method: "PUT",
-    headers: {
-      Authorization: `token ${githubToken}`,
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      message: `Product opgeslagen: ${titel}`,
-      content: content,
-      sha: existing ? existing.sha : undefined
-    })
-  });
+await fetch(`https://api.github.com/repos/${repo}/contents/${path}`,{
+method:"PUT",
+headers:{Authorization:`token ${githubToken}`,"Content-Type":"application/json"},
+body:JSON.stringify({
+message:`Product ${titel}`,
+content,
+sha:existing?existing.sha:undefined
+})
+});
 
-  document.getElementById("editSlug").value = "";
-  loadProducts();
+loadProducts();
 }
 
-async function editProduct(slug) {
-  const file = await getFile(`data/assortiment/${slug}.json`);
-  const data = JSON.parse(atob(file.content));
-
-  document.getElementById("editSlug").value = slug;
-  document.getElementById("titel").value = data.titel;
-  document.getElementById("beschrijving").value = data.beschrijving;
-  document.getElementById("prijs").value = data.prijs;
-  document.getElementById("categorie").value = data.categorie;
+async function editProduct(slug){
+const file = await getFile(`data/assortiment/${slug}.json`);
+const data = JSON.parse(atob(file.content));
+document.getElementById("editSlug").value=slug;
+document.getElementById("titel").value=data.titel;
+document.getElementById("beschrijving").value=data.beschrijving;
+document.getElementById("prijs").value=data.prijs;
+document.getElementById("producttype").value=data.producttype;
+document.getElementById("hoofdcategorie").value=data.hoofdcategorie;
+updateSubcategorie();
+toggleSubcategorie();
+if(data.subcategorie)
+document.getElementById("subcategorie").value=data.subcategorie;
 }
 
-async function deleteProduct(slug) {
-
-  if (!confirm("Zeker verwijderen?")) return;
-
-  const file = await getFile(`data/assortiment/${slug}.json`);
-
-  await fetch(`https://api.github.com/repos/${repo}/contents/data/assortiment/${slug}.json`, {
-    method: "DELETE",
-    headers: {
-      Authorization: `token ${githubToken}`,
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      message: `Product verwijderd: ${slug}`,
-      sha: file.sha
-    })
-  });
-
-  loadProducts();
+async function deleteProduct(slug){
+if(!confirm("Zeker verwijderen?")) return;
+const file = await getFile(`data/assortiment/${slug}.json`);
+await fetch(`https://api.github.com/repos/${repo}/contents/data/assortiment/${slug}.json`,{
+method:"DELETE",
+headers:{Authorization:`token ${githubToken}`,"Content-Type":"application/json"},
+body:JSON.stringify({message:`Delete ${slug}`,sha:file.sha})
+});
+loadProducts();
 }
 
 </script>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
 </body>
 </html>
