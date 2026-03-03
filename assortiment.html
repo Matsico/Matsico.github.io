@@ -11,10 +11,7 @@
 <style>
 body { padding-top:110px; }
 .product-img { height:250px; object-fit:cover; }
-.subfilter-container { overflow-x:auto; white-space:nowrap; }
-.subfilter-container button { margin:4px; }
-.section-title { margin-top:40px; }
-.loading { text-align:center; padding:40px; }
+.filter-bar { margin-bottom:30px; }
 </style>
 </head>
 
@@ -31,17 +28,54 @@ body { padding-top:110px; }
 
 <main class="container">
 
-<h1 class="mb-4 text-center">Assortiment</h1>
+<h1 class="text-center mb-4">Assortiment</h1>
 
-<!-- Subcategorie filter -->
-<div class="subfilter-container text-center mb-4" id="subfilters"></div>
+<!-- FILTERS -->
+<div class="filter-bar text-center">
 
-<!-- Dieren -->
-<h3 class="section-title">Vissen</h3>
-<div id="dieren-container" class="row"></div>
+<div class="btn-group me-2">
+  <button class="btn btn-dark" onclick="filterAlles()">Alles</button>
+</div>
 
-<!-- Producten -->
-<h3 class="section-title">Producten</h3>
+<div class="btn-group me-2">
+  <button class="btn btn-outline-dark dropdown-toggle" data-bs-toggle="dropdown">
+    Vissen
+  </button>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" onclick="filterHoofd('Vissen')">Alles Vissen</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><a class="dropdown-item" onclick="filterSub('Vissen','Aquaria')">Aquaria</a></li>
+    <li><a class="dropdown-item" onclick="filterSub('Vissen','Techniek')">Techniek</a></li>
+    <li><a class="dropdown-item" onclick="filterSub('Vissen','Decoratie')">Decoratie</a></li>
+    <li><a class="dropdown-item" onclick="filterSub('Vissen','Planten')">Planten</a></li>
+    <li><a class="dropdown-item" onclick="filterSub('Vissen','Plantenvoeding')">Plantenvoeding</a></li>
+    <li><a class="dropdown-item" onclick="filterSub('Vissen','Voeders')">Voeders</a></li>
+    <li><a class="dropdown-item" onclick="filterSub('Vissen','Medicatie')">Medicatie</a></li>
+    <li><a class="dropdown-item" onclick="filterSub('Vissen','Diverse')">Diverse</a></li>
+  </ul>
+</div>
+
+<div class="btn-group">
+  <button class="btn btn-outline-dark dropdown-toggle" data-bs-toggle="dropdown">
+    Vogels
+  </button>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" onclick="filterHoofd('Vogels')">Alles Vogels</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><a class="dropdown-item" onclick="filterSub('Vogels','Kooien')">Kooien</a></li>
+    <li><a class="dropdown-item" onclick="filterSub('Vogels','Volières')">Volières</a></li>
+    <li><a class="dropdown-item" onclick="filterSub('Vogels','Voeders')">Voeders</a></li>
+    <li><a class="dropdown-item" onclick="filterSub('Vogels','Bodembedekking')">Bodembedekking</a></li>
+    <li><a class="dropdown-item" onclick="filterSub('Vogels','Verrijking')">Verrijking</a></li>
+    <li><a class="dropdown-item" onclick="filterSub('Vogels','Techniek')">Techniek</a></li>
+    <li><a class="dropdown-item" onclick="filterSub('Vogels','Transport')">Transport</a></li>
+    <li><a class="dropdown-item" onclick="filterSub('Vogels','Diverse')">Diverse</a></li>
+  </ul>
+</div>
+
+</div>
+
+<!-- PRODUCTEN -->
 <div id="product-container" class="row"></div>
 
 </main>
@@ -54,52 +88,8 @@ body { padding-top:110px; }
 <script>
 
 let alleProducten = [];
-let actieveSub = "alles";
-
-const subcategorieen = [
-  "Aquaria","Techniek","Decoratie","Planten",
-  "Plantenvoeding","Voeders","Medicatie","Diverse"
-];
-
-function maakSubFilters(){
-  const container = document.getElementById("subfilters");
-  container.innerHTML = "";
-
-  container.innerHTML += `<button class="btn btn-dark" onclick="filterSub('alles')">Alles</button>`;
-
-  subcategorieen.forEach(sub=>{
-    container.innerHTML += `
-      <button class="btn btn-outline-dark" onclick="filterSub('${sub}')">
-        ${sub}
-      </button>
-    `;
-  });
-}
-
-function filterSub(sub){
-  actieveSub = sub;
-  toonProducten();
-  updateActiveButton();
-}
-
-function updateActiveButton(){
-  document.querySelectorAll("#subfilters button").forEach(btn=>{
-    btn.classList.remove("btn-dark");
-    btn.classList.add("btn-outline-dark");
-    if(btn.textContent === actieveSub || (actieveSub==="alles" && btn.textContent==="Alles")){
-      btn.classList.remove("btn-outline-dark");
-      btn.classList.add("btn-dark");
-    }
-  });
-}
 
 async function laadProducten(){
-
-  const dierenContainer = document.getElementById("dieren-container");
-  const productContainer = document.getElementById("product-container");
-
-  dierenContainer.innerHTML = "<div class='loading'>Laden...</div>";
-  productContainer.innerHTML = "";
 
   const res = await fetch(
   "https://api.github.com/repos/Matsico/Matsico.github.io/contents/data/assortiment");
@@ -114,63 +104,64 @@ async function laadProducten(){
     alleProducten.push(product);
   }
 
-  toonProducten();
+  toonProducten(alleProducten);
 }
 
-function toonProducten(){
+function toonProducten(producten){
 
-  const dierenContainer = document.getElementById("dieren-container");
-  const productContainer = document.getElementById("product-container");
+  const container = document.getElementById("product-container");
+  container.innerHTML="";
 
-  dierenContainer.innerHTML="";
-  productContainer.innerHTML="";
-
-  // Dieren tonen
-  const dieren = alleProducten.filter(p =>
-    p.producttype === "Dier" &&
-    p.hoofdcategorie === "Vissen"
-  );
-
-  dieren.forEach(product=>{
-    dierenContainer.innerHTML += kaart(product);
-  });
-
-  // Producten filteren
-  let producten = alleProducten.filter(p =>
-    p.producttype === "Product" &&
-    p.hoofdcategorie === "Vissen"
-  );
-
-  if(actieveSub !== "alles"){
-    producten = producten.filter(p => p.subcategorie === actieveSub);
+  if(producten.length === 0){
+    container.innerHTML="<p class='text-center'>Geen producten gevonden.</p>";
+    return;
   }
 
   producten.forEach(product=>{
-    productContainer.innerHTML += kaart(product);
+    container.innerHTML += `
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 shadow-sm">
+        <img src="${product.afbeelding}" 
+             class="card-img-top product-img"
+             alt="${product.titel}">
+        <div class="card-body d-flex flex-column">
+          <h5>${product.titel}</h5>
+          <p>${product.beschrijving}</p>
+          <small class="text-muted">
+            ${product.hoofdcategorie}
+            ${product.subcategorie ? " • " + product.subcategorie : ""}
+          </small>
+          <div class="mt-auto">
+            <p class="fw-bold fs-5">€ ${Number(product.prijs).toFixed(2)}</p>
+          </div>
+        </div>
+      </div>
+    </div>`;
   });
 }
 
-function kaart(product){
-  return `
-  <div class="col-md-4 mb-4">
-    <div class="card h-100 shadow-sm">
-      <img src="${product.afbeelding}"
-           class="card-img-top product-img"
-           alt="${product.titel}"
-           loading="lazy">
-      <div class="card-body d-flex flex-column">
-        <h5>${product.titel}</h5>
-        <p>${product.beschrijving}</p>
-        ${product.subcategorie ? `<small class="text-muted">${product.subcategorie}</small>` : ""}
-        <div class="mt-auto">
-          <p class="fw-bold fs-5">€ ${Number(product.prijs).toFixed(2)}</p>
-        </div>
-      </div>
-    </div>
-  </div>`;
+function filterAlles(){
+  toonProducten(alleProducten);
 }
 
-maakSubFilters();
+function filterHoofd(hoofdcategorie){
+  const gefilterd = alleProducten.filter(p =>
+    p.hoofdcategorie === hoofdcategorie
+  );
+  toonProducten(gefilterd);
+}
+
+function filterSub(hoofdcategorie, subcategorie){
+  const gefilterd = alleProducten.filter(p =>
+    p.hoofdcategorie === hoofdcategorie &&
+    (
+      p.producttype === "Dier" ||
+      p.subcategorie === subcategorie
+    )
+  );
+  toonProducten(gefilterd);
+}
+
 laadProducten();
 
 </script>
