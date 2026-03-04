@@ -32,7 +32,6 @@
           <a class="nav-link" href="/">Home</a>
         </li>
 
-        <!-- Dropdown -->
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
             Assortiment
@@ -171,6 +170,30 @@
   </div>
 </footer>
 
+<!-- EmailJS -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+<script>
+(function(){
+emailjs.init("_arCyVr3UgO-9UZ_n");
+})();
+
+document.querySelector("form").addEventListener("submit", function(){
+
+var naam = document.querySelector('[name="naam"]').value;
+var email = document.querySelector('[name="email"]').value;
+var onderwerp = document.querySelector('[name="onderwerp"]').value;
+
+emailjs.send("service_kbmqe7v","template_dxw52wp",{
+to_email: email,
+to_name: naam,
+onderwerp: onderwerp
+});
+
+});
+</script>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
