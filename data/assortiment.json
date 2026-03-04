@@ -1,1 +1,20 @@
-[]
+[
+  {
+    "titel": "Clownbotia ",
+    "beschrijving": "15 cm lange vis\ndit is een testproduct",
+    "prijs": "15",
+    "producttype": "Dier",
+    "hoofdcategorie": "Vissen",
+    "subcategorie": "",
+    "afbeelding": "images/clownbotia-.jpg"
+  },
+  {
+    "titel": "Superfish Aquaflow 400 - filter",
+    "beschrijving": "filter voor een aquarium van 400 liter\ndit is een test prodct",
+    "prijs": "36.99",
+    "producttype": "Product",
+    "hoofdcategorie": "Vissen",
+    "subcategorie": "Techniek",
+    "afbeelding": "images/superfish-aquaflow-400---filter.jpg"
+  }
+]
