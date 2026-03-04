@@ -88,5 +88,14 @@
     "hoofdcategorie": "Vissen",
     "subcategorie": "Decoratie",
     "afbeelding": "images/kienhout-klein.jpg"
+  },
+  {
+    "titel": "Kienhout Groot",
+    "beschrijving": "een stuk hout van 10cm breedt op 10cm diep en 30m hoog",
+    "prijs": "20.95",
+    "producttype": "Product",
+    "hoofdcategorie": "Vissen",
+    "subcategorie": "Decoratie",
+    "afbeelding": "images/kienhout-groot.jpg"
   }
 ]
