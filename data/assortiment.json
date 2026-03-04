@@ -79,5 +79,14 @@
     "hoofdcategorie": "Vissen",
     "subcategorie": "Techniek",
     "afbeelding": "images/oase-filtosmart-60---actieprijs.jpg"
+  },
+  {
+    "titel": "Kienhout klein",
+    "beschrijving": "een stuk hout van 20cm op 10 cm en 5sm hoog",
+    "prijs": "15.95",
+    "producttype": "Product",
+    "hoofdcategorie": "Vissen",
+    "subcategorie": "Decoratie",
+    "afbeelding": "images/kienhout-klein.jpg"
   }
 ]
