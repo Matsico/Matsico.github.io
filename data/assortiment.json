@@ -34,5 +34,14 @@
     "hoofdcategorie": "Vissen",
     "subcategorie": "Plantenvoeding",
     "afbeelding": "images/hs-aqua-terracaps.jpg"
+  },
+  {
+    "titel": "HS-Aqua Dapnia SD",
+    "beschrijving": "Gedroogde watervlooien ter aanvulling op het dieet van tropische zoetwatervissen.",
+    "prijs": "3.75",
+    "producttype": "Product",
+    "hoofdcategorie": "Vissen",
+    "subcategorie": "Voeders",
+    "afbeelding": "images/hs-aqua-dapnia-sd.jpg"
   }
 ]
