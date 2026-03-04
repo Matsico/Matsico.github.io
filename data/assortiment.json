@@ -115,5 +115,14 @@
     "hoofdcategorie": "Vissen",
     "subcategorie": "Aquaria",
     "afbeelding": "images/aquarium-klein.jpg"
+  },
+  {
+    "titel": "Superfish visnet 10cm",
+    "beschrijving": "visnetje van 10cm ",
+    "prijs": "2.50",
+    "producttype": "Product",
+    "hoofdcategorie": "Vissen",
+    "subcategorie": "Diverse",
+    "afbeelding": "images/superfish-visnet-10cm.jpg"
   }
 ]
