@@ -49,36 +49,43 @@ Vin & Vleugel
 
 <button class="btn btn-dark m-1" onclick="filterAll()">Alles</button>
 
-<div class="btn-group m-1">
-<button class="btn btn-outline-dark dropdown-toggle" data-bs-toggle="dropdown">Vissen</button>
-<ul class="dropdown-menu">
-<li><a class="dropdown-item" onclick="filterHoofd('Vissen')">Alle Vissen</a></li>
-<li><hr class="dropdown-divider"></li>
-<li><a class="dropdown-item" onclick="filterSub('Vissen','Aquaria')">Aquaria</a></li>
-<li><a class="dropdown-item" onclick="filterSub('Vissen','Techniek')">Techniek</a></li>
-<li><a class="dropdown-item" onclick="filterSub('Vissen','Decoratie')">Decoratie</a></li>
-<li><a class="dropdown-item" onclick="filterSub('Vissen','Planten')">Planten</a></li>
-<li><a class="dropdown-item" onclick="filterSub('Vissen','Plantenvoeding')">Plantenvoeding</a></li>
-<li><a class="dropdown-item" onclick="filterSub('Vissen','Voeders')">Voeders</a></li>
-<li><a class="dropdown-item" onclick="filterSub('Vissen','Medicatie')">Medicatie</a></li>
-<li><a class="dropdown-item" onclick="filterSub('Vissen','Diverse')">Diverse</a></li>
-</ul>
+<div class="btn-group me-2">
+  <button class="btn btn-outline-dark dropdown-toggle" data-bs-toggle="dropdown">
+    Vissen
+  </button>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" onclick="filterHoofd('Vissen')">Alles Vissen</a></li>
+    <li><a class="dropdown-item" onclick="filterDieren('Vissen')">Vissen</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><a class="dropdown-item" onclick="filterSub('Vissen','Aquaria')">Aquaria</a></li>
+    <li><a class="dropdown-item" onclick="filterSub('Vissen','Techniek')">Techniek</a></li>
+    <li><a class="dropdown-item" onclick="filterSub('Vissen','Decoratie')">Decoratie</a></li>
+    <li><a class="dropdown-item" onclick="filterSub('Vissen','Planten')">Planten</a></li>
+    <li><a class="dropdown-item" onclick="filterSub('Vissen','Plantenvoeding')">Plantenvoeding</a></li>
+    <li><a class="dropdown-item" onclick="filterSub('Vissen','Voeders')">Voeders</a></li>
+    <li><a class="dropdown-item" onclick="filterSub('Vissen','Medicatie')">Medicatie</a></li>
+    <li><a class="dropdown-item" onclick="filterSub('Vissen','Diverse')">Diverse</a></li>
+  </ul>
 </div>
 
-<div class="btn-group m-1">
-<button class="btn btn-outline-dark dropdown-toggle" data-bs-toggle="dropdown">Vogels</button>
-<ul class="dropdown-menu">
-<li><a class="dropdown-item" onclick="filterHoofd('Vogels')">Alle Vogels</a></li>
-<li><hr class="dropdown-divider"></li>
-<li><a class="dropdown-item" onclick="filterSub('Vogels','Kooien')">Kooien</a></li>
-<li><a class="dropdown-item" onclick="filterSub('Vogels','Volières')">Volières</a></li>
-<li><a class="dropdown-item" onclick="filterSub('Vogels','Voeders')">Voeders</a></li>
-<li><a class="dropdown-item" onclick="filterSub('Vogels','Bodembedekking')">Bodembedekking</a></li>
-<li><a class="dropdown-item" onclick="filterSub('Vogels','Verrijking')">Verrijking</a></li>
-<li><a class="dropdown-item" onclick="filterSub('Vogels','Techniek')">Techniek</a></li>
-<li><a class="dropdown-item" onclick="filterSub('Vogels','Transport')">Transport</a></li>
-<li><a class="dropdown-item" onclick="filterSub('Vogels','Diverse')">Diverse</a></li>
-</ul>
+<!-- VOGELS -->
+<div class="btn-group">
+  <button class="btn btn-outline-dark dropdown-toggle" data-bs-toggle="dropdown">
+    Vogels
+  </button>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" onclick="filterHoofd('Vogels')">Alles Vogels</a></li>
+    <li><a class="dropdown-item" onclick="filterDieren('Vogels')">Vogels</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><a class="dropdown-item" onclick="filterSub('Vogels','Kooien')">Kooien</a></li>
+    <li><a class="dropdown-item" onclick="filterSub('Vogels','Volières')">Volières</a></li>
+    <li><a class="dropdown-item" onclick="filterSub('Vogels','Voeders')">Voeders</a></li>
+    <li><a class="dropdown-item" onclick="filterSub('Vogels','Bodembedekking')">Bodembedekking</a></li>
+    <li><a class="dropdown-item" onclick="filterSub('Vogels','Verrijking')">Verrijking</a></li>
+    <li><a class="dropdown-item" onclick="filterSub('Vogels','Techniek')">Techniek</a></li>
+    <li><a class="dropdown-item" onclick="filterSub('Vogels','Transport')">Transport</a></li>
+    <li><a class="dropdown-item" onclick="filterSub('Vogels','Diverse')">Diverse</a></li>
+  </ul>
 </div>
 
 </div>
@@ -129,20 +136,32 @@ container.innerHTML+=`
 });
 }
 
-function filterAll(){
-toonProducten(alleProducten);
+function filterAlles(){
+  toonProducten(alleProducten);
 }
 
-function filterHoofd(hoofd){
-const gefilterd = alleProducten.filter(p=>p.hoofdcategorie===hoofd);
-toonProducten(gefilterd);
+function filterHoofd(hoofdcategorie){
+  const gefilterd = alleProducten.filter(p =>
+    p.hoofdcategorie === hoofdcategorie
+  );
+  toonProducten(gefilterd);
 }
 
-function filterSub(hoofd,sub){
-const gefilterd = alleProducten.filter(p=>
-p.hoofdcategorie===hoofd && p.subcategorie===sub
-);
-toonProducten(gefilterd);
+function filterDieren(hoofdcategorie){
+  const gefilterd = alleProducten.filter(p =>
+    p.hoofdcategorie === hoofdcategorie &&
+    p.producttype === "Dier"
+  );
+  toonProducten(gefilterd);
+}
+
+function filterSub(hoofdcategorie, subcategorie){
+  const gefilterd = alleProducten.filter(p =>
+    p.hoofdcategorie === hoofdcategorie &&
+    p.producttype === "Product" &&
+    p.subcategorie === subcategorie
+  );
+  toonProducten(gefilterd);
 }
 
 laadProducten();
