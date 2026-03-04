@@ -25,5 +25,14 @@
     "hoofdcategorie": "Vissen",
     "subcategorie": "Voeders",
     "afbeelding": "images/jbl-novo-stick-m.jpg"
+  },
+  {
+    "titel": "HS-Aqua TerraCaps",
+    "beschrijving": "plantenvoeding voor wortelvoedende planten",
+    "prijs": "10.70",
+    "producttype": "Product",
+    "hoofdcategorie": "Vissen",
+    "subcategorie": "Plantenvoeding",
+    "afbeelding": "images/hs-aqua-terracaps.jpg"
   }
 ]
