@@ -52,5 +52,14 @@
     "hoofdcategorie": "Vissen",
     "subcategorie": "Plantenvoeding",
     "afbeelding": "images/easy-life-profito.jpg"
+  },
+  {
+    "titel": "Sera Catappa Leaves XXL",
+    "beschrijving": "Catappa blad is een natuurlijke voedingsbron voor garnalen en geeft tevens tannines af om het waterkwaliteit te verbeteren",
+    "prijs": "12.99",
+    "producttype": "Product",
+    "hoofdcategorie": "Vissen",
+    "subcategorie": "Voeders",
+    "afbeelding": "images/sera-catappa-leaves-xxl.jpg"
   }
 ]
