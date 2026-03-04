@@ -1,20 +1,137 @@
 [
   {
-    "titel": "Clownbotia ",
-    "beschrijving": "15 cm lange vis\ndit is een testproduct",
-    "prijs": "15",
-    "producttype": "Dier",
+    "titel": "JBL - Artemio Set",
+    "beschrijving": "Een complete set om zelf artemia te kweken.\ncompleet met broedreservoir, ventilatiepomp, opvangreservoir, artemia-zeef en luchtslang met terugslagventiel",
+    "prijs": "73.75",
+    "producttype": "Product",
     "hoofdcategorie": "Vissen",
-    "subcategorie": "",
-    "afbeelding": "images/clownbotia-.jpg"
+    "subcategorie": "Voeders",
+    "afbeelding": "images/jbl---artemio-set.jpg"
   },
   {
-    "titel": "Superfish Aquaflow 400 - filter",
-    "beschrijving": "filter voor een aquarium van 400 liter\ndit is een test prodct",
-    "prijs": "36.99",
+    "titel": "Tetra Cichlid Algea mini pellets",
+    "beschrijving": "Klein voeder voor cichliden",
+    "prijs": "19.99",
+    "producttype": "Product",
+    "hoofdcategorie": "Vissen",
+    "subcategorie": "Voeders",
+    "afbeelding": "images/tetra-cichlid-algea-mini-pellets.jpg"
+  },
+  {
+    "titel": "JBL Novo Stick M",
+    "beschrijving": "Voer voor Cichliden",
+    "prijs": "18.99",
+    "producttype": "Product",
+    "hoofdcategorie": "Vissen",
+    "subcategorie": "Voeders",
+    "afbeelding": "images/jbl-novo-stick-m.jpg"
+  },
+  {
+    "titel": "HS-Aqua TerraCaps",
+    "beschrijving": "plantenvoeding voor wortelvoedende planten",
+    "prijs": "10.70",
+    "producttype": "Product",
+    "hoofdcategorie": "Vissen",
+    "subcategorie": "Plantenvoeding",
+    "afbeelding": "images/hs-aqua-terracaps.jpg"
+  },
+  {
+    "titel": "HS-Aqua Dapnia SD",
+    "beschrijving": "Gedroogde watervlooien ter aanvulling op het dieet van tropische zoetwatervissen.",
+    "prijs": "3.75",
+    "producttype": "Product",
+    "hoofdcategorie": "Vissen",
+    "subcategorie": "Voeders",
+    "afbeelding": "images/hs-aqua-dapnia-sd.jpg"
+  },
+  {
+    "titel": "Easy-Life Profito",
+    "beschrijving": "profesionele vloeibare plantenvoeding",
+    "prijs": "15.88",
+    "producttype": "Product",
+    "hoofdcategorie": "Vissen",
+    "subcategorie": "Plantenvoeding",
+    "afbeelding": "images/easy-life-profito.jpg"
+  },
+  {
+    "titel": "Sera Catappa Leaves XXL",
+    "beschrijving": "Catappa blad is een natuurlijke voedingsbron voor garnalen en geeft tevens tannines af om het waterkwaliteit te verbeteren",
+    "prijs": "12.99",
+    "producttype": "Product",
+    "hoofdcategorie": "Vissen",
+    "subcategorie": "Voeders",
+    "afbeelding": "images/sera-catappa-leaves-xxl.jpg"
+  },
+  {
+    "titel": "Superfish Air-Flow 2",
+    "beschrijving": "De Superfish Air-Flow 2 is een stille en energiezuinige luchtpomp voor aquaria die zorgt voor extra zuurstof en watercirculatie. Geschikt voor kleine tot middelgrote aquariums en eenvoudig aan te sluiten op luchtstenen of sponsfilters.",
+    "prijs": "25.75",
     "producttype": "Product",
     "hoofdcategorie": "Vissen",
     "subcategorie": "Techniek",
-    "afbeelding": "images/superfish-aquaflow-400---filter.jpg"
+    "afbeelding": "images/superfish-air-flow-2.jpg"
+  },
+  {
+    "titel": "Oase FiltoSmart 60 - Actieprijs",
+    "beschrijving": "De OASE FiltoSmart 60 is een compacte externe aquariumfilter voor aquaria tot ongeveer 60 liter. Dankzij de meertraps mechanisch-biologische filtratie zorgt hij voor helder en gezond water terwijl hij stil en energiezuinig werkt",
+    "prijs": "25",
+    "producttype": "Product",
+    "hoofdcategorie": "Vissen",
+    "subcategorie": "Techniek",
+    "afbeelding": "images/oase-filtosmart-60---actieprijs.jpg"
+  },
+  {
+    "titel": "Kienhout klein",
+    "beschrijving": "een stuk hout van 20cm op 10 cm en 5sm hoog",
+    "prijs": "15.95",
+    "producttype": "Product",
+    "hoofdcategorie": "Vissen",
+    "subcategorie": "Decoratie",
+    "afbeelding": "images/kienhout-klein.jpg"
+  },
+  {
+    "titel": "Kienhout Groot",
+    "beschrijving": "een stuk hout van 10cm breedt op 10cm diep en 30m hoog",
+    "prijs": "20.95",
+    "producttype": "Product",
+    "hoofdcategorie": "Vissen",
+    "subcategorie": "Decoratie",
+    "afbeelding": "images/kienhout-groot.jpg"
+  },
+  {
+    "titel": "Drakensteen klein",
+    "beschrijving": "drakensteen van 10cm op 10cm op 10cm.",
+    "prijs": "3.95",
+    "producttype": "Product",
+    "hoofdcategorie": "Vissen",
+    "subcategorie": "Decoratie",
+    "afbeelding": "images/drakensteen-klein.jpg"
+  },
+  {
+    "titel": "Aquarium klein",
+    "beschrijving": "kleine aquarium van van 15cm op 15cm op 15cm.",
+    "prijs": "5",
+    "producttype": "Product",
+    "hoofdcategorie": "Vissen",
+    "subcategorie": "Aquaria",
+    "afbeelding": "images/aquarium-klein.jpg"
+  },
+  {
+    "titel": "Superfish visnet 10cm",
+    "beschrijving": "visnetje van 10cm ",
+    "prijs": "2.50",
+    "producttype": "Product",
+    "hoofdcategorie": "Vissen",
+    "subcategorie": "Diverse",
+    "afbeelding": "images/superfish-visnet-10cm.jpg"
+  },
+  {
+    "titel": "Superfish Thermometer ",
+    "beschrijving": "thermometer van Superfish met zuignap voor tegen aquarium raam",
+    "prijs": "3.05",
+    "producttype": "Product",
+    "hoofdcategorie": "Vissen",
+    "subcategorie": "Diverse",
+    "afbeelding": "images/superfish-thermometer-.jpg"
   }
 ]
