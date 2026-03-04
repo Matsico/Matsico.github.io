@@ -97,5 +97,14 @@
     "hoofdcategorie": "Vissen",
     "subcategorie": "Decoratie",
     "afbeelding": "images/kienhout-groot.jpg"
+  },
+  {
+    "titel": "Drakensteen klein",
+    "beschrijving": "drakensteen van 10cm op 10cm op 10cm.",
+    "prijs": "3.95",
+    "producttype": "Product",
+    "hoofdcategorie": "Vissen",
+    "subcategorie": "Decoratie",
+    "afbeelding": "images/drakensteen-klein.jpg"
   }
 ]
