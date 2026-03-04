@@ -43,5 +43,14 @@
     "hoofdcategorie": "Vissen",
     "subcategorie": "Voeders",
     "afbeelding": "images/hs-aqua-dapnia-sd.jpg"
+  },
+  {
+    "titel": "Easy-Life Profito",
+    "beschrijving": "profesionele vloeibare plantenvoeding",
+    "prijs": "15.88",
+    "producttype": "Product",
+    "hoofdcategorie": "Vissen",
+    "subcategorie": "Plantenvoeding",
+    "afbeelding": "images/easy-life-profito.jpg"
   }
 ]
