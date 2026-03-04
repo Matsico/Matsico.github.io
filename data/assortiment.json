@@ -106,5 +106,14 @@
     "hoofdcategorie": "Vissen",
     "subcategorie": "Decoratie",
     "afbeelding": "images/drakensteen-klein.jpg"
+  },
+  {
+    "titel": "Aquarium klein",
+    "beschrijving": "kleine aquarium van van 15cm op 15cm op 15cm.",
+    "prijs": "5",
+    "producttype": "Product",
+    "hoofdcategorie": "Vissen",
+    "subcategorie": "Aquaria",
+    "afbeelding": "images/aquarium-klein.jpg"
   }
 ]
