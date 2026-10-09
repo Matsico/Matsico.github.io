@@ -321,3 +321,9 @@ footer img:hover {
   }
 
 }
+
+
+/* Keep homepage category cards clear of the fixed navigation when linked directly. */
+.nav-target {
+  scroll-margin-top: 100px;
+}
